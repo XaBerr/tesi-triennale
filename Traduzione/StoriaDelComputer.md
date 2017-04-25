@@ -1,0 +1,1 @@
+Email moro per libro

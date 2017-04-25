@@ -1,0 +1,11 @@
+Cos'è un computer?
+- Elaboratore
+	- von neumann
+	- memoria
+	- indicizzazione
+- Processore
+ - Algebra di bool
+ - Porte logiche
+- Storia
+	- perché si è strutturato cosi?
+	- chi ha dato per primo questa architettura?
