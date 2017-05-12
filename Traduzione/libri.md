@@ -12,5 +12,3 @@ ________________________
 matematica e modellizazione
 - introduction to automata theory languages and computations. hopcroft motwani, ullman  (0-201-44124-1)
 - models of computation exploring the power of computing john savage (ONLINE)
-
-tunning machine(wiki)

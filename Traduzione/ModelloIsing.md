@@ -1,4 +1,4 @@
-# Modello Ising
+# Modello Ising (wiki)
 Il modello di Ising (Ernst Ising) è un modello fisico matematico studiato in meccanica statistica. Inizialmente ideato per descrivere un corpo magnetizzato è stato poi utilizzato per fenomeni variegati accumunati dalla presenza di singoli componenti che interagiscono a coppie.
 
 ## Definizione
