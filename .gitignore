@@ -1,4 +1,5 @@
-/Latex/*
-!/Latex/*.tex
-!/Latex/.gitignore
-!/Latex/*.md
+/Latex/*.aux
+/Latex/*.log
+/Latex/*.pdf
+/Latex/*.toc
+/Latex/*.gz

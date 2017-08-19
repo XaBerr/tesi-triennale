@@ -32,19 +32,22 @@
 * indice
 * elenco delle figure
 * elenco delle tabelle
-- Introduzione (Limiti del computer)
-- Meccanica quantistica
-- Computer tradizionale
-	- Storia
-	- Bit
-	- Gate
-	- Transistor
-- Computer quantistico
-	- D-WAVE
-		- Qubit
-			- Double well potential
+- 0.0 Introduzione (Limiti del computer)
+- 1.0 Meccanica quantistica
+- 2.0 Computer tradizionale
+	- 2.1 Storia
+	- 2.2 Bit
+	- 2.3 Gate
+	- 2.4 Transistor
+- 3.0 Computer quantistico
+- 4.0 D-WAVE
+	- 4.1 Funzionamento dei Qubit
+		- Double well potential
+	- 4.2 Architettura del processore
 		- Chimera
-			- Ising model
+		- Ising model
 		- Flux-DAC
+	- 4.3 Programmazione
+		- 4c map
 * bibliogrfica
 * indice analitico
