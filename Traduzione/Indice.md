@@ -34,6 +34,20 @@
 * elenco delle tabelle
 - 0.0 Introduzione (Limiti del computer)
 - 1.0 Meccanica quantistica
+	- 1.1 Operatori
+		- 1.1.1 Autofunzioni e autovalori
+		- 1.1.2 Commutatore
+		- 1.1.3 Lineari
+		- 1.1.4 Hermitiani
+	- 1.2 Postulati
+		- 1.2.1 Stati e funzioni d'onda
+		- 1.2.2 La prescrizione fondamentale
+		- 1.2.3 Il risultato nelle misure
+		- 1.2.4 L'interpretazione della funzione d'onda
+		- 1.2.5 L'equazione della funzione d'onda
+	- 1.3 Notazione di Dirac
+	- 1.4 Principio di indeterminazione
+	- 1.5 Oscillatore armonico
 - 2.0 Computer tradizionale
 	- 2.1 Storia
 	- 2.2 Bit
