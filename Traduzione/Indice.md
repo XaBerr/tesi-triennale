@@ -35,10 +35,11 @@
 - 0.0 Introduzione (Limiti del computer)
 - 1.0 Meccanica quantistica
 	- 1.1 Operatori
-		- 1.1.1 Autofunzioni e autovalori
-		- 1.1.2 Commutatore
-		- 1.1.3 Lineari
-		- 1.1.4 Hermitiani
+		- 1.1.1 Operatori comuni
+		- 1.1.2 Autofunzioni e autovalori
+		- 1.1.3 Commutatore
+		- 1.1.4 Lineari
+		- 1.1.5 Hermitiani
 	- 1.2 Postulati
 		- 1.2.1 Stati e funzioni d'onda
 		- 1.2.2 La prescrizione fondamentale
