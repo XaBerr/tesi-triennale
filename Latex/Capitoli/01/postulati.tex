@@ -2,7 +2,7 @@
 Nel campo scentifico esistono due tipi di postulati. Il primo tipo si basa sull'osservazione diretta ad esempio <<il calore fluisce spontaneamente dai corpi più caldi a quelli più freddi>>. Il secondo tipo è quello non immediato, per eprimerlo bisogna citare una serie di contenuti consecutivi ad esempio <<l'entropia dei sistemi isolati aumenta nel corso delle trasformazioni spontanee>>. I postulati della meccanica quantistica appartengono al secondo tipo.
 
 \subsubsection{Stati e funzioni d'onda}
-Il primo postulato esprime l'informazione sufficente e necessaria per descrivere lo stato di un sistema.
+Il primo postulato esprime l'informazione per descrivere lo stato di un sistema.
 \begin{quote}
 \textbf{Postulato 1}: Lo stato del sistema è completamente descritto dalla funzione d'onda $\Psi(x_1, x_2, ..., t)$.
 \end{quote}
@@ -14,7 +14,29 @@ Il secondo postulato riguarda la scelta degli operatori.
   \textbf{Postulato 2}: Le osservabili sono rappresentate da operatori scelti in modo da soddisfare le relazioni di commutazione:
   $$ [\hat{q}, \hat{p_{q'}}] = i \hbar \delta_{qq'} \qquad [\hat{q}, \hat{q}'] = 0 \qquad [\hat{p_q}, \hat{p_{q'}}] = 0$$
 \end{quote}
-In questo enunciato $\hat{q}, \hat{q}'$ rappresentano delle coordinate $x, y, z$, $\hat{p_q}, \hat{p_{q'}}$ sono i rispettivi momenti lineari.
-% \subsubsection{Il risultato delle misure}
+In questo enunciato $\hat{q}, \hat{q}'$ rappresentano delle coordinate $x, y, z$, $\hat{p_q}, \hat{p_{q'}}$ sono i rispettivi momenti lineari. La prescrizione fondamentale è un postulato che non può essere né provato né dedotto. Offre una base per la scelta degli operatori che devono rispettare le relazioni di commutazione.
+
+\subsubsection{Il risultato delle misure}
+Il terzo postulato introduce il collegamento tra funzione d'onda ed operatori. Stabilisce inoltre il legame fra i calcoli formali e quelli sperimentali.
+\begin{quote}
+\textbf{Postulato 3}: Quando un sistema è descritto dalla funzione d'onda $\psi$, il valor medio dell'osservazione $\omega$, in una serie di misure, è uguale al valore atteso dell'operatore corrispondente $\hat{\Omega}$.
+\end{quote}
+Data una funzione d'onda $\psi$ ed un opertore $\hat{\Omega}$ il \textbf{valore atteso} di un operatore è definito:
+$$\hat{\left \langle \Omega \right \rangle} = \frac{ \int \psi^{\star} \hat{\Omega} \psi \,d\tau }{ \int \psi^{\star} \psi \,d\tau }$$
+Scegliendo una \textbf{funzione d'onda normalizzata} ovvero una funzione che rispetti questa proprietà:
+$$\int \psi^{\star} \psi \,d\tau = 1$$
+il valore atteso di questa funzione risulta:
+$$\hat{\left \langle \Omega \right \rangle} = \int \psi^{\star} \hat{\Omega} \psi \,d\tau$$
+Per spiegare il postulato 3 prendiamo $\psi$ normalizzata in modo che sia un'autofunzione di $\hat{\Omega}$ ed abbia autovalore $\omega$.
+$$\hat{\left \langle \Omega \right \rangle} = \int \psi^{\star} \hat{\Omega} \psi \,d\tau = \int \psi^{\star} \omega \psi \,d\tau = \omega \int \psi^{\star} \psi \,d\tau = \omega$$
+In questo caso $\psi$ rappresenta il sistema sul quale andiamo ad effettuare le misure, $\omega$ rappresenta il valor medio delle misure effettuate ed $\hat{\Omega}$ rappresenta l'operatore corrispondente.
+Supponiamo invece che $\psi$ sia un autostato dell'hamiltoniano e non sia un autostato di $\hat{\Omega}$. In questo caso $\psi$ si potrà scrivere come combinazione lineare di funzioni con autostato di $\hat{\Omega}$.
+$$\hat{\Omega} = \sum_n c_n \psi_n \qquad ed \qquad \hat{\Omega} \psi_n = \omega_n \psi_n$$
+Il valore di attesa risulterà:
+$$\hat{\left \langle \Omega \right \rangle} = \int \psi^{\star} \hat{\Omega} \psi \,d\tau = \int {\left(\sum_m c_m \psi_m\right)}^{\star} \hat{\Omega} \sum_n c_n \psi_n \,d\tau = \sum_{m,n} c_m^{\star} c_n \int \psi_m^{\star} \hat{\Omega} \psi_n \, d\tau$$
+$$\hat{\left \langle \Omega \right \rangle} = \sum_{m,n} c_m^{\star} c_n \omega_n \int \psi_m^{\star} \psi_n \, d\tau$$
+È possibile compattare ancora questa funzione considerando che le autofunzioni formano un insieme ortonormale e quindi il prodotto $\psi_m^{\star} \psi_n$ si annulla sempre tranne nel caso in cui $n = m$. Dalla funzione precedente si ottiene dunque:
+$$\hat{\left \langle \Omega \right \rangle} = \sum_{n} c_n^{\star} c_n \omega_n \int \psi_n^{\star} \psi_n \, d\tau = \sum_n {\left| c_n \right|}^2 \omega_n$$
+
 % \subsubsection{L'interpretazione della funzione d'onda}
 % \subsubsection{L'equazione della funzione d'onda}
