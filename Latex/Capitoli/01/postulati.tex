@@ -55,4 +55,27 @@ L'interpretazione di Born, in altri termini, vincola la funzione ad essere integ
 $$\int {\left|\psi\right|}^2 \, d\tau < \infty$$
 Questa formula indica che la probabilità di trovare una particella in una regione dello spazio è finita e vale $1$ per le funzioni normalizzate. Da qui si deduce facilmente che $\psi \to 0$ per $ x \to \pm \infty$ altrimenti l'integrale sarebbe infinito.
 
-% \subsubsection{L'equazione della funzione d'onda}
+\subsubsection{L'equazione della funzione d'onda}
+Il quinto ed ultimo postulato, anche noto come \textbf{equazione di Schr\"odinger}, espone come la funzione d'onda evolve nel tempo.
+\begin{quote}
+  \textbf{Postulato 5}: La funzione d'onda $\Psi(r_1, r_2, ..., t)$ evolve nel tempo secondo l'equazione
+  $$i\hbar \frac{\partial \Psi}{\partial t} = \hat{H} \Psi$$
+\end{quote}
+L'operatore $\hat{H}$ rappresenta l'operatore di energia chiamato hamiltoniano. Nel caso di una particella libera si può sostituire con la seguente formula:
+$$i \hbar \frac{\partial \Psi}{\partial t} = - \frac{\hbar^2}{2 m} \frac{\partial^2 \Psi}{\partial x^2} + V(x) \Psi$$
+Quando l'energia potenziale è indipendente dal tempo, essa si può separare in funzioni legate al tempo e funzioni legate allo spazio. Applicando la tecnica della \textbf{separazione delle variabili} possiamo riscrivere $\Psi$:
+$$\Psi(x, t) = \psi(x) \theta(t)$$
+Mettendo al primo membro solo i termini che dipendono da $t$ e al secondo solo quelli che dipendono da $x$
+$$i \hbar \frac{1}{\theta(t)} \frac{\partial \theta(t)}{\partial t} = - \frac{\hbar^2}{2 m} \frac{1}{\psi(x)} \frac{\partial^2 \psi(x)}{\partial x^2} + V(x)$$
+si nota che se $x$ cambia, il secondo membro rimane costante, di conseguenza essendo il primo membro uguale al secondo anche il primo rimane costante. Chiameremo questa costante $E$ in modo che ricordi le dimensioni dell'energia di cui essa ne fa parte. Ne conseguono due funzioni:
+$$E \theta(t) = i \hbar \frac{1}{\theta(t)} \frac{\partial \theta(t)}{\partial t}$$
+$$E \psi(x) = - \frac{\hbar^2}{2 m} \frac{1}{\psi(x)} \frac{\partial^2 \psi(x)}{\partial x^2} + V(x)$$
+La prima di queste due equazioni ammette come soluzione
+$$\theta \propto e^{\frac{-i E t}{\hbar}}$$
+e dunque la funzione completa avra come soluzione
+$$\Psi(x, t) = \psi(x) e^{\frac{-i E t}{\hbar}}$$
+più semplicemente potremo scrivere per $\psi(x)$ l'equazione:
+$$\hat{H} \psi(x) = E \psi(x)$$
+Quest'ultima equazione prende il nome di equazione di Scr\"odinger indipendente dal tempo.
+Quando l'energia potenziale è indipendente dal tempo, per descrivere il moto che dipende dal tempo, basterà prendere la funzione $\psi(x)$ e moltiplicarla per la modulazione di fase $e^{\frac{-i E t}{\hbar}}$. Nonostante la funzione d'onda oscilli nel tempo la quantità ${\left|\Psi\right|}^2$ rimane costate, in uno \textbf{stato stazionario}:
+$$\Psi^{\star} \Psi = {\left(\psi(x) e^{\frac{-i E t}{\hbar}}\right)}^{\star} \left(\psi(x) e^{\frac{-i E t}{\hbar}}\right) = \psi^{\star} \psi$$
