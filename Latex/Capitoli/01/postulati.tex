@@ -37,6 +37,22 @@ $$\hat{\left \langle \Omega \right \rangle} = \int \psi^{\star} \hat{\Omega} \ps
 $$\hat{\left \langle \Omega \right \rangle} = \sum_{m,n} c_m^{\star} c_n \omega_n \int \psi_m^{\star} \psi_n \, d\tau$$
 È possibile compattare ancora questa funzione considerando che le autofunzioni formano un insieme ortonormale e quindi il prodotto $\psi_m^{\star} \psi_n$ si annulla sempre tranne nel caso in cui $n = m$. Dalla funzione precedente si ottiene dunque:
 $$\hat{\left \langle \Omega \right \rangle} = \sum_{n} c_n^{\star} c_n \omega_n \int \psi_n^{\star} \psi_n \, d\tau = \sum_n {\left| c_n \right|}^2 \omega_n$$
+Da queste ultime considerazioni si può ricavare una versione più dettagliata del postulato 3.
+\begin{quote}
+  \textbf{Postulato 3'}: Quando $\psi$ è un'autofunzione dell'operatore $\hat{\Omega}$ la determinazione della proprietà $\hat{\Omega}$ fornisce sempre un unico risultato: l'autovalore corrispondente $\omega$. Quando $\psi$ non è un'autofunzione di $\hat{\Omega}$, una misura della proprietà fornisce un unico risultato, che coincide con uno degli autovalori di $\hat{\Omega}$, e la probabilità che si sia misurato un particolare autovalore $n$ è uguale a ${\left|c_n\right|}^2$, dove $c_n$ è il coefficente dell'autofunzione $\psi_n$ nello sviluppo della funzione d'onda $\psi$.
+\end{quote}
 
-% \subsubsection{L'interpretazione della funzione d'onda}
+\subsubsection{L'interpretazione della funzione d'onda}
+Spesso chiamato \textbf{interpretazione di Born} il quarto postulato riguarda l'interpretazione della funzione d'onda.
+\begin{quote}
+  \textbf{Postulato 4}: La probabilità di rinvenire una particella nell'elemento di volume $d\tau$ al punto $r$ è proporzionale a ${\left|\psi(r)\right|}^2 d\psi$.
+\end{quote}
+Si chiamata \textbf{densità di probabilità} la funzione ${\left|\psi(r)\right|}^2 d\psi$ perché moltiplicata per un certo volume, essa fornisce la probabilità di trovare la particella in quella regione. Nel caso monodimensionale:
+$$\mathbb{P}(a, b) = \int_a^b {\left|\psi(x)\right|}^2 \, dx$$
+La funzione $\psi$ viene anche detta \textbf{ampiezza di probabilità}, nell'esempio del caso monodimensionale si può notare il legame tra $\psi$ e l'ampiezza della funzione $\mathbb{P}$:
+$$\mathbb{P}(x) = {\left|\psi(x)\right|}^2$$
+L'interpretazione di Born, in altri termini, vincola la funzione ad essere integrabile al quadrato:
+$$\int {\left|\psi\right|}^2 \, d\tau < \infty$$
+Questa formula indica che la probabilità di trovare una particella in una regione dello spazio è finita e vale $1$ per le funzioni normalizzate. Da qui si deduce facilmente che $\psi \to 0$ per $ x \to \pm \infty$ altrimenti l'integrale sarebbe infinito.
+
 % \subsubsection{L'equazione della funzione d'onda}
