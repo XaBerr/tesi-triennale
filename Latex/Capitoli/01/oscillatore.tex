@@ -1,5 +1,26 @@
 \subsection{Oscillatore armonico}
 \subsubsection{Moto traslazionale}
+Il moto più semplice da introdurre è quello di una particella che si muove in uno spazio monodimensionale a potenziale costante. L'hamiltoniana di questa particella è:
+$$\hat{H} = - \frac{\hbar^2}{2m} \partial_x^2$$
+L'equazione di Scr\"odinger associata indipendente del tempo $\hat{H}\psi = \hat{E}\psi$ ha come soluzione:
+$$\psi = A e^{i k x} + B e^{- i k x} \qquad k = \sqrt{\frac{2 m E}{\hbar^2}}$$
+I coefficenti $A, B$ sono indicativi della direzione di moto della particella, ad esempio se la particella viaggia da destra a sinistra avrà sicuramente il coefficente $A = 0$, invece se viaggia da sinistra a destra avrà il coefficente $B = 0$.
+Dal coefficente $k$ possiamo invece notare che:
+$$k\hbar = \frac{\hbar}{\hbar} \sqrt{2 m E \hbar} = \frac{\hbar}{\hbar} \sqrt{2 m \frac{p^2}{2 m}} = p \qquad con \qquad E = \frac{p^2}{2m}$$
+Riscrivendo la funzine di $\psi$ come
+$$\psi = C \cos{kx} + D \sin{kx}$$
+ovvero come
+$$\psi = C \cos{\frac{p x 2 \pi}{h}} + D \sin{\frac{p x 2 \pi}{h}}$$
+ne consegue che la lunghezza d'onda è $\lambda = \frac{2\pi}{k}$ e
+$$p = \frac{h}{\lambda}$$
+Quest'ultima relazione prende il nome di \index{relazione di de Broglie}\textbf{relazione di de Broglie}.
+
+\subsubsection{Densità di flusso}
+Data una funzione d'onda $\Psi$ si definisce densità di flusso:
+$$J_x = \frac{\hbar}{2mi}\left(\Psi^{\star} \frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^{\star}}{\partial x}  \right)$$
+
+\subsubsection{Pacchetto d'onde}
+
 % \subsubsection{Penetrazione di barriere}
 % \subsubsection{Particella nella scatola}
 % \subsubsection{La soluzione dell'oscillatore}
