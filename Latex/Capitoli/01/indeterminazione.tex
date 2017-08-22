@@ -1,7 +1,22 @@
 \subsection{Principio di indeterminazione}
-% \subsubsection{Computer}
-% \paragraph{Processore}
-% \subparagraph{Architettura}
-ciao
-$$ \epsilon = V * I $$
-% \includegraphics[scale=0.5]{Immagini/icon.png}
+Sebbene sia uno dei capi saldi su cui si regge la meccanica quantistica, dal punto di vista della formulazione in termini dei postulati risulta una semplice conseguenza del formalismo. Esso afferma che esistono coppie di grandezze fisiche che non possono essere misurate simultaneamente con precisione arbitraria. Ad esempio la precisione con cui misuriamo la posizione $\Delta x$ e la precisione con cui misuriamo la quantità di moto $\Delta q$ di un elettrone, non possono essere spresse in maniera arbitraria ma vanno sotto il vincolo
+$$ \Delta x \Delta p \ge \frac{1}{2} \hbar$$
+
+\subsubsection{Deduzione formale del principio di indeterminazione}
+Prendiamo ora due operatori $\hat{A}, \hat{B}$ che seguono la relazione di commutazione $[\hat{A}, \hat{B}] = iC$. Prendiamo anche uno stato $\psi$ normalizzato, non necessariamente autostato dei due operatori. Definiamone i valori attesi:
+$$\langle \hat{A} \rangle = \langle \psi | \hat{A} | \psi \rangle \qquad \langle \hat{B} \rangle = \langle \psi | \hat{B} | \psi \rangle$$
+Definiamo due nuove osservabili chiamate \textbf{scarti dalla media} sottraendo i valori medi alle osservabili di partenza:
+$$\delta \hat{A} = \hat{A} - \langle \hat{A} \rangle \qquad \delta \hat{B} = \hat{B} - \langle \hat{B} \rangle$$
+% Il loro commutatore sarà ancora una volta:
+% $$[\hat{\delta A}, \hat{\delta B}] = [\hat{A} - \langle \hat{A} \rangle, \hat{B} - \langle \hat{B} \rangle] = [\hat{A}, \hat{B}] $$
+La \textbf{deviazione standard} $\langle (\delta\hat{\Omega})^2 \rangle$ dei due operatori è dunque:
+$${\Delta \hat{A}}^2 = \langle (\delta \hat{A})^2 \rangle = \langle \hat{A}^2 \rangle - {\langle \hat{A} \rangle}^2 $$
+$${\Delta \hat{B}}^2 = \langle (\delta \hat{B})^2 \rangle = \langle \hat{B}^2 \rangle - {\langle \hat{B} \rangle}^2$$
+Sfruttando l'integrale di Robertson
+$$ I = \int {|(\alpha \delta \hat{A} - i \delta \hat{B})\psi|}^2 \, d\tau$$
+si ottiene che:
+$$ {\Delta \hat{A}}^2 {\Delta \hat{B}}^2 \ge \frac{1}{4} {|\langle[\hat{A}, \hat{B}]\rangle|}^2$$
+applicando la radice ad entrambi i membri si arriva a:
+$$ \Delta \hat{A} \Delta \hat{B} \ge \frac{1}{2} |\langle[\hat{A}, \hat{B}]\rangle|$$
+Nel caso in cui $\hat{A} = \hat{x}$ e $\hat{B} = \hat{p}$ e quindi il loro commutatore sia $[\hat{x}, \hat{p}] = i \hbar$, la diseguaglianza varrà:
+$$ \Delta \hat{x} \Delta \hat{p} \ge \frac{1}{2} \hbar$$
