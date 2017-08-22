@@ -1,5 +1,10 @@
 /Latex/*.aux
 /Latex/*.log
 /Latex/*.pdf
-/Latex/*.toc
 /Latex/*.gz
+/Latex/*.toc
+/Latex/*.lof
+/Latex/*.lot
+/Latex/*.idx
+/Latex/*.ilg
+/Latex/*.ind
