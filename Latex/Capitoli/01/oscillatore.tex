@@ -20,7 +20,30 @@ Data una funzione d'onda $\Psi$ si definisce densità di flusso:
 $$J_x = \frac{\hbar}{2mi}\left(\Psi^{\star} \frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^{\star}}{\partial x}  \right)$$
 
 \subsubsection{Pacchetto d'onde}
+Un pacchetto d'onde è uno stato di energia imprecisa descrivibile dalla sovrapposizione di energie precise.
+La funzione d'onda risulterà di ampiezza non nulla in una piccola regione dello spazio e nulla in qualunque altro posto.
+Avrà come forma
+$$\Psi(x, t) = \int g(k) \Psi_k(x, t) \, dk \qquad con \qquad \Psi_k(x, t) = A e^{ikx} e^{\frac{-i E_k t}{\hbar}}$$
+dove $g(k)$ prenderà il nome di \index{funzione peso}\textbf{funzione peso} e $\Psi_k$ sarà la famiglia d'onde che si sovrappongono per formare $\Psi$.
 
-% \subsubsection{Penetrazione di barriere}
+\subsubsection{Barriera di potenziale}
+Classicamente una particella può superare una barriera di potenziale solo se la sua energia iniziale è superiore a quella del potenziale, in caso contrario la particella verrebbe riflessa. In meccanica quantistica la faccenda è più complessa. Vediamo ora come si comporta la particella a seconda che lo spessore della barriera sia infinito o finito.
+
+\paragraph{Parete di potenziale infinitamente spessa}
+Prendiamo una regione dello spazio e dividiamola in due, la parte sinistra $(x < 0)$ che chiameremo \textit{Zona I} decidiamo avere potenziale $0$, mentre la parte destra $(x > 0)$ la nomineremo \textit{Zona II} ed avrà potenziale $V$. L'hamiltoniana dello spazio sarà:
+$$H=\begin{cases} - \frac{\hbar^2}{2m} \partial_x^2, & \mbox{se } x<0 \mbox{ Zona I} \\ - \frac{\hbar^2}{2m} \partial_x^2 + V, & \mbox{se } x>0 \mbox{ Zona II}
+\end{cases}$$
+Consideriamo ora una particella libera che si muove da sinistra a desta con energia iniziale $E$, descriviamo la sua funzione d'onda nelle due zone:
+\begin{equation}
+\begin{aligned}
+  \quad \mbox{Zona I: }  &\psi = Ae^{ikx} + Be^{-ikx} \qquad & con \qquad & k\hbar = \sqrt{2mE}\\
+  \quad \mbox{Zona II: } &\psi = Ae^{ik'x} + Be^{-ik'x} \qquad & con \qquad & k'\hbar = \sqrt{2m(E-V)}
+\end{aligned}
+\end{equation}
+
+\paragraph{Parete di potenziale di spessore finito}
+% \paragraph{Parete di potenziale di Eckart}
+
+
 % \subsubsection{Particella nella scatola}
 % \subsubsection{La soluzione dell'oscillatore}
