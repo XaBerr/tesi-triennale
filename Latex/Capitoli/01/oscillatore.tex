@@ -13,7 +13,7 @@ ovvero come
 $$\psi = C \cos{\frac{p x 2 \pi}{h}} + D \sin{\frac{p x 2 \pi}{h}}$$
 ne consegue che la lunghezza d'onda è $\lambda = \frac{2\pi}{k}$ e
 $$p = \frac{h}{\lambda}$$
-Quest'ultima relazione prende il nome di \index{relazione di de Broglie}\textbf{relazione di de Broglie}.
+Quest'ultima relazione prende il nome di \myindex{relazione di de Broglie}.
 
 \subsubsection{Densità di flusso}
 Data una funzione d'onda $\Psi$ si definisce densità di flusso:
@@ -24,12 +24,12 @@ Un pacchetto d'onde è uno stato di energia imprecisa descrivibile dalla sovrapp
 La funzione d'onda risulterà di ampiezza non nulla in una piccola regione dello spazio e nulla in qualunque altro posto.
 Avrà come forma
 $$\Psi(x, t) = \int g(k) \Psi_k(x, t) \, dk \qquad con \qquad \Psi_k(x, t) = A e^{ikx} e^{\frac{-i E_k t}{\hbar}}$$
-dove $g(k)$ prenderà il nome di \index{funzione peso}\textbf{funzione peso} e $\Psi_k$ sarà la famiglia d'onde che si sovrappongono per formare $\Psi$.
+dove $g(k)$ prenderà il nome di \myindex{funzione peso} e $\Psi_k$ sarà la famiglia d'onde che si sovrappongono per formare $\Psi$.
 
 \subsubsection{Barriera di potenziale}
 Classicamente una particella può superare una barriera di potenziale solo se la sua energia iniziale è superiore a quella del potenziale, in caso contrario la particella verrebbe riflessa. In meccanica quantistica la faccenda è più complessa. Vediamo ora come si comporta la particella a seconda che lo spessore della barriera sia infinito o finito.
 
-\paragraph{Parete di potenziale infinitamente spessa}
+\myparagraph{Parete di potenziale infinitamente spessa}
 Prendiamo una regione dello spazio e dividiamola in due, la parte sinistra $(x < 0)$ che chiameremo \textit{Zona I} decidiamo avere potenziale $0$, mentre la parte destra $(x > 0)$ la nomineremo \textit{Zona II} ed avrà potenziale $V$. L'hamiltoniana dello spazio sarà:
 $$H=\begin{cases} - \frac{\hbar^2}{2m} \partial_x^2, & \mbox{se } x<0 \mbox{ Zona I} \\ - \frac{\hbar^2}{2m} \partial_x^2 + V, & \mbox{se } x>0 \mbox{ Zona II}
 \end{cases}$$
@@ -42,9 +42,9 @@ Consideriamo ora una particella libera che si muove da sinistra a desta con ener
 \end{equation}
 Nella seconda equazione $E - V < 0$ e qunque $k'$ risulta un numero immaginario, possiamo riscriverlo come $k' = i \kappa$ con $\kappa \in \mathbb{R}$ ed ottenere l'equazione:
 $$\psi = A'e^{-\kappa'x} + B'e^{\kappa'x} \qquad  con \qquad \kappa\hbar = \sqrt{2m(E-V)}$$
-A questo punto, sapendo che la particella non può stare nella \textit{Zona II}, teniamo l'esponenziale che tende a $0$ ed eliminiamo l'altro imponendo $B' = 0$. Per quanto velocemente tenda a $0$ l'esponenziale, rimarrà comunque una piccola probabilità di rinvenire la particella all'interno della barriera, questo effetto prende il nome di \index{penetrazione}\textbf{penetrazione} e la distanza massima in cui si può trovare la particella all'interno della barriera è $\frac{1}{\kappa}$ e si chiama \index{profondità di penetrazione}\textbf{profondità di penetrazione}.
+A questo punto, sapendo che la particella non può stare nella \textit{Zona II}, teniamo l'esponenziale che tende a $0$ ed eliminiamo l'altro imponendo $B' = 0$. Per quanto velocemente tenda a $0$ l'esponenziale, rimarrà comunque una piccola probabilità di rinvenire la particella all'interno della barriera, questo effetto prende il nome di \myindex{penetrazione} e la distanza massima in cui si può trovare la particella all'interno della barriera è $\frac{1}{\kappa}$ e si chiama \myindex{profondità di penetrazione}.
 
-\paragraph{Parete di potenziale di spessore finito}
+\myparagraph{Parete di potenziale di spessore finito}
 Prendiamo una regione dello spazio, questa volta la dividiamo in tre, la parte sinistra $(x < 0)$ e la parte destra $(x > L)$ che chiameremo rispettivamente \textit{Zona I} e \textit{Zona III} decidiamo avere potenziale $0$, mentre la parte centrale $(0 < x < L)$ la nomineremo \textit{Zona II} ed avrà potenziale $V$ dove $L$ è una lunghezza arbitraria finita. L'hamiltoniana dello spazio sarà leggermente diversa:
 $$H=\begin{cases} - \frac{\hbar^2}{2m} \partial_x^2, & \mbox{se } x<0 \mbox{ Zona I} \\
  - \frac{\hbar^2}{2m} \partial_x^2 + V, & \mbox{se } 0<x<L \mbox{ Zona II} \\
@@ -58,19 +58,19 @@ Descriviamo ancora una volta la funzione d'onda della nostra particella:
   \quad \mbox{Zona III: } &\psi = A''e^{ikx} + B''e^{-ikx} \qquad & con \qquad & k\hbar = \sqrt{2mE}
 \end{aligned}
 \end{equation}
-Indichiamo con \index{onda entrante}\textbf{onda entrante} un onda che si avvicina ad un bersaglio mentre \index{onda uscente}\textbf{onda uscente} un onda che si allontana dal bersaglio. Classicamente nella \textit{Zona I} ci aspettiamo che l'onda entrante sia uguale all'onda uscente della \textit{Zona I} se $V > E$ oppure uguale a quella uscente dalla \textit{Zona III}. Nel nostro caso questo non è scontato, anzi bisogna analizzare una sovrapposizione di tutte le varie combinazioni. Gli unici vincoli che possiamo sfruttare sono le continuità nelle zone di contatto $ x = 0, x = L$ che sono: la continuità dell'ampiezza
+Indichiamo con \myindex{onda entrante} un onda che si avvicina ad un bersaglio mentre \myindex{onda uscente} un onda che si allontana dal bersaglio. Classicamente nella \textit{Zona I} ci aspettiamo che l'onda entrante sia uguale all'onda uscente della \textit{Zona I} se $V > E$ oppure uguale a quella uscente dalla \textit{Zona III}. Nel nostro caso questo non è scontato, anzi bisogna analizzare una sovrapposizione di tutte le varie combinazioni. Gli unici vincoli che possiamo sfruttare sono le continuità nelle zone di contatto $ x = 0, x = L$ che sono: la continuità dell'ampiezza
 $$A + B = A' + B'$$
 $$A'e^{-\kappa L} + B'e^{\kappa L} = A''e^{ikL} + B''e^{-ikL}$$
 e la continuità di pendenza
 $$ikA - ikB = -\kappa A' + \kappa B'$$
 $$-\kappa A'e^{-\kappa L} + \kappa B'e^{\kappa L} = ikA''e^{ikL} - ikB''e^{-ikL}$$
 Da questo punto possiamo calcolarci le probabilità di rifflessione e di trasmissione dell'onda.
-La \index{probabilità di riflessione}\textbf{probabilità di riflessione} è data dal rapporto tra fra la densità di flusso riflessa e la densità di flusso incidente:
+La \myindex{probabilità di riflessione} è data dal rapporto tra fra la densità di flusso riflessa e la densità di flusso incidente:
 $$R = \frac{|B|^2}{|A|^2}$$
-Analogamente la \index{probabilità di trasmissione}\textbf{probabilità di trasmissione} è data dal rapporto fra densità di fusso trasmessa e densità di flusso incidente:
+Analogamente la \myindex{probabilità di trasmissione} è data dal rapporto fra densità di fusso trasmessa e densità di flusso incidente:
 $$P = \frac{|A''|^2}{|A|^2}$$
-Si fa notare che $P = 1 - R$. Nonostante $E < V$ la particella può avere una $P \ne 0$ ovvero avere una certa probabilità di attraversare la barriera avendo comunque un energia inferiore ad essa, questa caratteristica prende il nome di \index{effetto tunnel}\textbf{effetto tunnel}.
+Si fa notare che $P = 1 - R$. Nonostante $E < V$ la particella può avere una $P \ne 0$ ovvero avere una certa probabilità di attraversare la barriera avendo comunque un energia inferiore ad essa, questa caratteristica prende il nome di \myindex{effetto tunnel}.
 
 \subsubsection{Particella nella scatola}
-
+\myindex{pippo}
 % \subsubsection{La soluzione dell'oscillatore}
