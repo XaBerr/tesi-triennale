@@ -46,7 +46,8 @@ A questo punto, sapendo che la particella non può stare nella \textit{Zona II},
 
 \myparagraph{Parete di potenziale di spessore finito}
 Prendiamo una regione dello spazio, questa volta la dividiamo in tre, la parte sinistra $(x < 0)$ e la parte destra $(x > L)$ che chiameremo rispettivamente \textit{Zona I} e \textit{Zona III} decidiamo avere potenziale $0$, mentre la parte centrale $(0 < x < L)$ la nomineremo \textit{Zona II} ed avrà potenziale $V$ dove $L$ è una lunghezza arbitraria finita. L'hamiltoniana dello spazio sarà leggermente diversa:
-$$H=\begin{cases} - \frac{\hbar^2}{2m} \partial_x^2, & \mbox{se } x<0 \mbox{ Zona I} \\
+$$H=\begin{cases}
+ - \frac{\hbar^2}{2m} \partial_x^2, & \mbox{se } x<0 \mbox{ Zona I} \\
  - \frac{\hbar^2}{2m} \partial_x^2 + V, & \mbox{se } 0<x<L \mbox{ Zona II} \\
  - \frac{\hbar^2}{2m} \partial_x^2, & \mbox{se } x>L \mbox{ Zona III}
 \end{cases}$$
@@ -72,5 +73,16 @@ $$P = \frac{|A''|^2}{|A|^2}$$
 Si fa notare che $P = 1 - R$. Nonostante $E < V$ la particella può avere una $P \ne 0$ ovvero avere una certa probabilità di attraversare la barriera avendo comunque un energia inferiore ad essa, questa caratteristica prende il nome di \myindex{effetto tunnel}.
 
 \subsubsection{Particella nella scatola}
-\myindex{pippo}
-% \subsubsection{La soluzione dell'oscillatore}
+Prendiamo in considerazione il problema di una particella vincolata a muoversi in una \myindex{buca quadrata unidimensionale}, dividiamo quindi lo spazio in tre zone: nella prima $x < 0$ e nella terza zona $L < x$ il potenziale è $+\infty$ mentre vale $0$ nella rimanente $0 < x < L$. L'hamiltoniana del sistema è:
+$$H=\begin{cases}
+ - \frac{\hbar^2}{2m} \partial_x^2 + V, & \mbox{se } x<0   \\
+ - \frac{\hbar^2}{2m} \partial_x^2,     & \mbox{se } 0<x<L \\
+ - \frac{\hbar^2}{2m} \partial_x^2 + V, & \mbox{se } x>L
+\end{cases} \qquad con \qquad V = +\infty$$
+Seguono due considerazioni, la prima e che la funzione d'onda della particella si annulla ovunque tranne che nella regione $0 < x < L$, ovvero, dove la particella è libera di muoversi, la seconda e che il moto della particella sarà un moto traslazionale libero. La funzione d'onda risulterà avere una forma
+$$\psi(x) = C \cos{kx} + D \sin{kx} \qquad k\hbar = \sqrt{2mE}$$
+con condiziondi di contorno $\psi(0) = 0$ e $\psi(L) = 0$. Applicando la prima condizione otteniamo $\psi(0) = C$ e quindi risulta che $C = 0$. Applicano la seconda condizione abbiamo $\psi(L) = D \sin(kL) = 0$ dove escludiamo $D = 0$ perché soluzione banale e porterebbe la funzione d'onda ad essere nulla. Rimane come soluzione annullare la funzione seno imponendo $k = \frac{n\pi}{L}$ con $n = 1, 2, ...$. Il numero intero $n$ prende il nome di \myindex{numero quantico}. Rimane da esprimere l'energia $E = \frac{k^2 \hbar^2}{2m}$ in funzione di $n$ come:
+$$E_n = \frac{n^2 \hbar^2 \pi^2}{2 m L^2} = \frac{n^2 h^2}{8 m L^2} \qquad con \qquad n = 1, 2, ...$$
+Da questa ultima formula si nota che l'energia non è libera di scegliere tutti i valori ma solo un sottoinsieme che dipende da $n$, questa caratteristica si chiama \myindex{quantizzazione}.
+
+\subsubsection{La soluzione dell'oscillatore}
