@@ -49,6 +49,14 @@
 	- 1.3 Notazione di Dirac
 	- 1.4 Principio di indeterminazione
 	- 1.5 Oscillatore armonico
+- 2.0* Meccanica statistica (FORSE)
+	- entropia
+	- prima legge della termodinamica
+	- secoda legge della termodinamica
+	- zero law
+	- approssimazione di Stearling
+	- lagrange multipliers
+	- distribuzione di boltzman
 - 2.0 Computer tradizionale
 	- 2.1 Storia
 	- 2.2 Bit

@@ -20,11 +20,11 @@ Data una funzione d'onda $\Psi$ si definisce densità di flusso:
 $$J_x = \frac{\hbar}{2mi}\left(\Psi^{\star} \frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^{\star}}{\partial x}  \right)$$
 
 \subsubsection{Pacchetto d'onde}
-Un pacchetto d'onde è uno stato di energia imprecisa descrivibile dalla sovrapposizione di energie precise.
+Un pacchetto d'onde è uno stato che ha un energia imprecisa descrivibile dalla sovrapposizione di energie precise.
 La funzione d'onda risulterà di ampiezza non nulla in una piccola regione dello spazio e nulla in qualunque altro posto.
 Avrà come forma
 $$\Psi(x, t) = \int g(k) \Psi_k(x, t) \, dk \qquad con \qquad \Psi_k(x, t) = A e^{ikx} e^{\frac{-i E_k t}{\hbar}}$$
-dove $g(k)$ prenderà il nome di \myindex{funzione peso} e $\Psi_k$ sarà la famiglia d'onde che si sovrappongono per formare $\Psi$.
+dove $g(k)$ prenderà il nome di \myindex{funzione peso} e $\Psi_k$ sarà la famiglia che conterrà le onde che sovrapponendosi formeranno $\Psi$.
 
 \subsubsection{Barriera di potenziale}
 Classicamente una particella può superare una barriera di potenziale solo se la sua energia iniziale è superiore a quella del potenziale, in caso contrario la particella verrebbe riflessa. In meccanica quantistica la faccenda è più complessa. Vediamo ora come si comporta la particella a seconda che lo spessore della barriera sia infinito o finito.
@@ -65,10 +65,10 @@ $$A'e^{-\kappa L} + B'e^{\kappa L} = A''e^{ikL} + B''e^{-ikL}$$
 e la continuità di pendenza
 $$ikA - ikB = -\kappa A' + \kappa B'$$
 $$-\kappa A'e^{-\kappa L} + \kappa B'e^{\kappa L} = ikA''e^{ikL} - ikB''e^{-ikL}$$
-Da questo punto possiamo calcolarci le probabilità di rifflessione e di trasmissione dell'onda.
-La \myindex{probabilità di riflessione} è data dal rapporto tra fra la densità di flusso riflessa e la densità di flusso incidente:
+Da questo punto possiamo calcolare le probabilità di riflessione e di trasmissione dell'onda.
+La \myindex{probabilità di riflessione} è data dal rapporto tra la densità di flusso riflessa e la densità di flusso incidente:
 $$R = \frac{|B|^2}{|A|^2}$$
-Analogamente la \myindex{probabilità di trasmissione} è data dal rapporto fra densità di fusso trasmessa e densità di flusso incidente:
+Analogamente la \myindex{probabilità di trasmissione} è data dal rapporto tra densità di fusso trasmessa e densità di flusso incidente:
 $$P = \frac{|A''|^2}{|A|^2}$$
 Si fa notare che $P = 1 - R$. Nonostante $E < V$ la particella può avere una $P \ne 0$ ovvero avere una certa probabilità di attraversare la barriera avendo comunque un energia inferiore ad essa, questa caratteristica prende il nome di \myindex{effetto tunnel}.
 
@@ -88,14 +88,14 @@ Da questa ultima formula si nota che l'energia non è libera di scegliere tutti 
 \subsubsection{La soluzione dell'oscillatore}
 Un oscillatore è costituito da una particella che si muove periodicamente attorno ad una posizione di equilibrio soggetto da una forza di richimo. Nell'oscillatore armonico unidimensionale la forza di richiamo è $F(x) = -kx$ dove $k$ prende il nome di \myindex{costante di forza}. Sapendo che il potenziale è legato alla forza mediante la formula $F(x) = -\partial_x V$ possiamo ricavarci la sua funzione:
 $$V(x) = \frac{1}{2}kx^2$$
-Due cose che si possono notare dalla formula sono: il \myindex{potenziale parabolico} è simmertico e il suo asse di simmetria è nel punto $x = 0$, il punto di simmetria è anche il punto di minimo del potenziale e corrisponde a $V(0) = 0$.
+Due cose che si possono notare dalla formula sono: primo il \myindex{potenziale parabolico} è simmertico e il suo asse di simmetria è nel punto $x = 0$, secondo il punto di simmetria è anche il punto di minimo del potenziale e corrisponde a $V(0) = 0$.
 L'hamiltoniana dell'oscillatore è
 $$H = - \frac{\hbar^2}{2m} \partial_x^2 + \frac{1}{2}kx^2$$
 che sostituendola nell'equazione di Schr\"odinger otteniamo:
 $$- \frac{\hbar^2}{2m} \partial_x^2\psi + \frac{1}{2}kx^2\psi = E\psi$$
-Risolviamo questa equazione partendo dal semplificarla applicando le seguenti sostituzioni
+Risolviamo questa equazione, partendo dal semplificarla applicando le seguenti sostituzioni
 $$y = x\sqrt{\frac{m\omega}{\hbar}} \qquad \lambda = \frac{E}{(\hbar \omega / 2)} \qquad \omega = \sqrt{\frac{k}{m}}$$
-sostituieamo ed otteniamo
+sostituiamo ed otteniamo
 $$-\lambda \psi = (\partial_y + y)(\partial_y - y)\psi$$
 Introduciamo ora due nuovi operatori l'\myindex{operatore di creazione} $\hat{a}^{\dagger}$ e l'\myindex{operatore di annichilimento} $\hat{a}$:
 $$\hat{a} = \frac{1}{\sqrt{2}}(\partial_y + y) \qquad \hat{a}^{\dagger} = \frac{1}{\sqrt{2}}(\partial_y - y)$$
@@ -108,7 +108,7 @@ $$\hat{a}\hat{a}^{\dagger}\hat{a}\psi_{\lambda} = -\frac{1}{2}(\lambda - 1) \hat
 $$\hat{a}^{\dagger}\hat{a}\hat{a}\psi_{\lambda} = -\frac{1}{2}(\lambda - 3) \hat{a}\psi_{\lambda}$$
 sapendo che $[\hat{a}, \hat{a}^{\dagger}] = 1$ ovvero che $\hat{a}\hat{a}^{\dagger} = \hat{a}^{\dagger}\hat{a} - 1$ segue immediatamente che:
 $$\hat{a}^{\dagger}\hat{a}\psi_{\lambda-2} = -\frac{1}{2}(\lambda - 3) \psi_{\lambda-2}$$
-Osservando le ultime due equazioni notiamo che $\hat{a}\psi_{\lambda} \propto \psi_{\lambda-2}$, da qui si intuisce che applicando ripetutamente l'operatore possiamo generare le funzioni d'onda corrispondenti ai livelli di energia di $\lambda-4$, $ \lambda-6$, ... fino ad arrivare al livello più basso, ovvero per $\psi = 0$ da qui il nome di operatore di annichilimento.
+Osservando le ultime due equazioni notiamo che $\hat{a}\psi_{\lambda} \propto \psi_{\lambda-2}$, si intuisce che applicando ripetutamente l'operatore possiamo generare le funzioni d'onda corrispondenti ai livelli di energia di $\lambda-4$, $ \lambda-6$, ... fino ad arrivare al livello più basso, ovvero per $\psi = 0$ da qui il nome di operatore di annichilimento.
 Analogo discorso per l'operatore di creazione con i livelli di energia $\lambda+2$, $ \lambda+4$, .... Per capire la forma della nostra funzione di energia partiamo dal livello più basso dove vale $\hat{a}^{\dagger}\hat{a}\psi_{min} = 0$ di conseguenza vale:
 $$\hat{a}^{\dagger}\hat{a}\psi_{min} = -\frac{1}{2}(\lambda_{min}-1)\psi_{min} \qquad con \qquad \lambda_{min} = 1$$
 Ora possiamo scrivere la nostra funzione di energia come

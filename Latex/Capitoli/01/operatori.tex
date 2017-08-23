@@ -1,7 +1,7 @@
 \subsection{Operatori}
-Si dice \myindex{osservabile} qualunque variabile dinamica che si presti ad essere osservata. Nella meccanica classica le osservabili si rappresentano come funzioni, ad esempio la posizione in funzione del tempo $x(t) = x_0 + v_0 * x + \frac{1}{2} a t^2$, mentre nella meccanica quantistica le osservabili vengono rappresentate mediante \myindex{operatori}, la posizione applicata alla funzione d'onda $\hat{X}\psi$. Noi rappresenteremo l'operatore generico con il simbolo $\hat{\Omega}$, mentre adopereremo $\hat{A}, \hat{B}, ...$ per riferirci ad una serie di operatori. In generale distingueremo fra l'osservabile e l'operatore ad esso asociato, useremo dunque per riferirci alla posizione di una particella lungo l'asse $x$ il simbolo $x$, mentre per riferirci al suo operatore useremo $\hat{X}$.
+Si dice \myindex{osservabile} qualunque variabile dinamica che si presti ad essere osservata. Nella meccanica classica le osservabili si rappresentano come funzioni, ad esempio la posizione in funzione del tempo $x(t) = x_0 + v_0 * x + \frac{1}{2} a t^2$, mentre nella meccanica quantistica le osservabili vengono rappresentate mediante \myindex{operatori}, la posizione applicata alla funzione d'onda $\hat{X}\psi$. Noi rappresenteremo l'operatore generico con il simbolo $\hat{\Omega}$, mentre adopereremo $\hat{A}, \hat{B}, ...$ per riferirci ad una serie di operatori. In generale distingueremo fra l'osservabile e l'operatore ad esso associato, useremo dunque per riferirci alla posizione di una particella lungo l'asse $x$ il simbolo $x$, mentre per riferirci al suo operatore useremo $\hat{X}$.
 
-\subsection{Operatori comuni}
+\subsubsection{Operatori comuni}
 Scegliendo in maniera diversa gli operatori corrispondenti ad una osservabile si ottengono rappresentazioni differenti. Una delle rappresentazioni più comuni è la \myindex{rappresentazione delle posizioni} che si distingue, appunto, per il fatto che rappresenta l'operatore posizione mediante la moltiplicazione per $x$. Esponiamo ora tre operatori importanti per la meccanica quantistica nel loro caso monodimensionale. L'\myindex{operatore posizione} sara dunque:
 $$\hat{x} f = x f$$
 Un altro operatore importante è l'\myindex{operatore momento}:
@@ -20,13 +20,13 @@ Un caso particolare di queste combinazioni lineari è quando abbiamo a che fare 
 $$\sum_n c_n \hat{\Omega} f_n = \sum_n c_n \omega f_n = \omega \sum_n c_n f_n$$
 
 \subsubsection{Commutatore}
-Una cosa interessante degli operatori è che l'ordine in cui una successione di operatori agiuscono su una funzione influisce sul risultato. Dati due opertori $\hat{A}, \hat{B}$ indichiamo la successione $\hat{A}$ seguita da $\hat{B}$ come $\hat{B}\hat{A}$ mentre, $\hat{B}$ seguita da $\hat{A}$ come $\hat{A}\hat{B}$.
+Una cosa interessante degli operatori è che l'ordine in cui una successione di operatori agiscono su una funzione influisce sul risultato. Dati due opertori $\hat{A}, \hat{B}$ indichiamo la successione $\hat{A}$ seguita da $\hat{B}$ come $\hat{B}\hat{A}$ mentre, $\hat{B}$ seguita da $\hat{A}$ come $\hat{A}\hat{B}$.
 In generale si dice che gli operatori non commutano, ovvero $\hat{A}\hat{B} \ne \hat{B}\hat{A}$. La quantità $\hat{A}\hat{B} - \hat{B}\hat{A}$ prende il nome di \myindex{commutatore} e si indica con il simbolo $[\hat{A},\hat{B}]$.
 
-\subsubsection{Lineari}
+\subsubsection{Operatori lineari}
 Gli operatori che troviamo nella meccanica quantistica hanno tutti una natura lineare. Per \myindex{operatore lineare} si intende quell'operatore che rispetta i canoni di linearità. Dati $a, b$ due costanti, $f, g$ due funzioni e $\hat{\Omega}$ operatore lineare, sarà vero che:
 $$\hat{\Omega}( af + bg ) = a \hat{\Omega} f + b \hat{\Omega} g$$
 
-\subsubsection{Hermitiani}
+\subsubsection{Operatori hermitiani}
 Dalla misurazione di un'osservazione non può che risultare un numero reale. Gli operatori che hanno dei numeri reali come autovalori si dicono \myindex{operatori hermitiani}. Sono dunque hermitiani gli operatori usati nel misurare un'osservabile. Matematicamente diciamo che: date due funzioni qualsiasi $\psi_m, \psi_n$, $\hat{\Omega}$ è un operatore hermitiano se soddisfa la seguente relazione
 $$\int \psi_m^{\star} \hat{\Omega} \psi_n\, d\tau = \left \{ \int \psi_n^{\star} \hat{\Omega} \psi_m\, d\tau \right \}^{\star}$$
