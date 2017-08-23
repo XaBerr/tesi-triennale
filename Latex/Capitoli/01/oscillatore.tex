@@ -86,3 +86,33 @@ $$E_n = \frac{n^2 \hbar^2 \pi^2}{2 m L^2} = \frac{n^2 h^2}{8 m L^2} \qquad con \
 Da questa ultima formula si nota che l'energia non è libera di scegliere tutti i valori ma solo un sottoinsieme che dipende da $n$, questa caratteristica si chiama \myindex{quantizzazione}.
 
 \subsubsection{La soluzione dell'oscillatore}
+Un oscillatore è costituito da una particella che si muove periodicamente attorno ad una posizione di equilibrio soggetto da una forza di richimo. Nell'oscillatore armonico unidimensionale la forza di richiamo è $F(x) = -kx$ dove $k$ prende il nome di \myindex{costante di forza}. Sapendo che il potenziale è legato alla forza mediante la formula $F(x) = -\partial_x V$ possiamo ricavarci la sua funzione:
+$$V(x) = \frac{1}{2}kx^2$$
+Due cose che si possono notare dalla formula sono: il \myindex{potenziale parabolico} è simmertico e il suo asse di simmetria è nel punto $x = 0$, il punto di simmetria è anche il punto di minimo del potenziale e corrisponde a $V(0) = 0$.
+L'hamiltoniana dell'oscillatore è
+$$H = - \frac{\hbar^2}{2m} \partial_x^2 + \frac{1}{2}kx^2$$
+che sostituendola nell'equazione di Schr\"odinger otteniamo:
+$$- \frac{\hbar^2}{2m} \partial_x^2\psi + \frac{1}{2}kx^2\psi = E\psi$$
+Risolviamo questa equazione partendo dal semplificarla applicando le seguenti sostituzioni
+$$y = x\sqrt{\frac{m\omega}{\hbar}} \qquad \lambda = \frac{E}{(\hbar \omega / 2)} \qquad \omega = \sqrt{\frac{k}{m}}$$
+sostituieamo ed otteniamo
+$$-\lambda \psi = (\partial_y + y)(\partial_y - y)\psi$$
+Introduciamo ora due nuovi operatori l'\myindex{operatore di creazione} $\hat{a}^{\dagger}$ e l'\myindex{operatore di annichilimento} $\hat{a}$:
+$$\hat{a} = \frac{1}{\sqrt{2}}(\partial_y + y) \qquad \hat{a}^{\dagger} = \frac{1}{\sqrt{2}}(\partial_y - y)$$
+Possiamo ora riscirvere l'equazione di Schr\"odinger come:
+$$\hat{a}\hat{a}^{\dagger}\psi_{\lambda} = -\frac{1}{2}(\lambda + 1) \psi_{\lambda}$$
+o equivalentemente:
+$$\hat{a}^{\dagger}\hat{a}\psi_{\lambda} = -\frac{1}{2}(\lambda - 1) \psi_{\lambda}$$
+Da qui possiamo ricavarci queste due equazioni:
+$$\hat{a}\hat{a}^{\dagger}\hat{a}\psi_{\lambda} = -\frac{1}{2}(\lambda - 1) \hat{a}\psi_{\lambda}$$
+$$\hat{a}^{\dagger}\hat{a}\hat{a}\psi_{\lambda} = -\frac{1}{2}(\lambda - 3) \hat{a}\psi_{\lambda}$$
+sapendo che $[\hat{a}, \hat{a}^{\dagger}] = 1$ ovvero che $\hat{a}\hat{a}^{\dagger} = \hat{a}^{\dagger}\hat{a} - 1$ segue immediatamente che:
+$$\hat{a}^{\dagger}\hat{a}\psi_{\lambda-2} = -\frac{1}{2}(\lambda - 3) \psi_{\lambda-2}$$
+Osservando le ultime due equazioni notiamo che $\hat{a}\psi_{\lambda} \propto \psi_{\lambda-2}$, da qui si intuisce che applicando ripetutamente l'operatore possiamo generare le funzioni d'onda corrispondenti ai livelli di energia di $\lambda-4$, $ \lambda-6$, ... fino ad arrivare al livello più basso, ovvero per $\psi = 0$ da qui il nome di operatore di annichilimento.
+Analogo discorso per l'operatore di creazione con i livelli di energia $\lambda+2$, $ \lambda+4$, .... Per capire la forma della nostra funzione di energia partiamo dal livello più basso dove vale $\hat{a}^{\dagger}\hat{a}\psi_{min} = 0$ di conseguenza vale:
+$$\hat{a}^{\dagger}\hat{a}\psi_{min} = -\frac{1}{2}(\lambda_{min}-1)\psi_{min} \qquad con \qquad \lambda_{min} = 1$$
+Ora possiamo scrivere la nostra funzione di energia come
+$$E_n = \frac{\hbar\omega(2n+1)}{2} \qquad con \qquad n = 0, 1, ...$$
+La funzione d'onda prenderà la forma di una funzione gaussiana a campana:
+$$\psi_n = N_n H_n(y)e^{-\frac{1}{2}y^2} \qquad y = \frac{x}{\alpha} \qquad \alpha = \left(\frac{\hbar^2}{mk}\right)^{\frac{1}{4}}$$
+dove $H_n$ sono dei polinomi particolari chiamati \myindex{polinomi di Hermite}.
