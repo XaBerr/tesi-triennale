@@ -1,61 +1,83 @@
 \lvlii{Programmare D-Wave}
-
 \lvliii{Introduzione}
-Il computer quantistico utilizza i qubit per memorizzare l'informazione. I qubit sono governati dalle leggi della meccanica quantistica e permettono l'utilizzo delle superposition. Una superposizion è una sovrapposizione coerente degli stati 1 e 0 che dopo un evento esterno collassa in uno dei due stati. Questa proprietà regala al computer quantistico l'abilità di risolvere velocemente una certa classe di problemi complessi di ottimizzazione, machine learning e campionamento.
-Programmare un computer quantistico è molto differente dal programmare un computer tradizionale. Per programmare il sistema quantistico bisogna mappare il problema in una ricerca del puto minimo in uno scenario il quale rappresenta la solizione migliore a tale problema. Il processore considera simultaneamente tutte le possibili soluzioni per determinare quella con l'energia di sistema minore. Essendo il quantum computer un sistema probabilistico invece che deterministico ritorna un un numero elevato di risposte in breve periodi di tempo, 10000 al secondo. In qusto modo ristorna le informazioni non solo della soluzione ottimale ma anche delle valide alternative. Successivamente analizzeremo come trasformare il problema di colorare una mappa in un programma da dare in pasto al computer quantistico.
+Il computer quantistico utilizza i qubit per memorizzare l'informazione. A differenza dei bit normali i qubit sono governati dalle leggi della meccanica quantistica e oltre ai due stati in comune con i bit, ovvero $0$ e $1$, essi permettono l'utilizzo delle superposition. Una superposizion è una sovrapposizione coerente tra gli stati $1$ e $0$. Essa non è esattamente uno stato, infatti quando si cerca di misurare lo stato di un sitema in superposition, si genera un evento esterno che fa collassare il sistema in uno dei due stati $1$ o $0$. Questa proprietà, spesso chiamata con il nome di quantum seed-up, regala al computer quantistico l'abilità di contenere i tempi di risoluzione del problema rispetto al computer classico, al crescere della complessità del sistema, per una certa classe di problemi complessi di ottimizzazione come, ad esempio, quelli di machine learning e quelli di campionamento. La programmazione di un computer quantistico è molto differente da quella di un computer classico. Mentre per il computer tradizionale si elabora un algoritmo che cerca la soluzione, per il sistema quantistico si mappare il problema in una ricerca del puto minimo in un grafo parametrizzato. Il processore considera simultaneamente tutte le possibili soluzioni per determinare quella o quelle con l'energia minore. Essendo il quantum computer un sistema probabilistico invece che deterministico esso non ritorna solo la soluzione minore ma ha una certa probabilità di ritornare soluzioni vicine a quella di minimo. Per trasformare questa debolezza in un punto di forza si fa eseguire il calcolo un numero elevato di volte in modo che produca un certo numero di risposte. Tutto questo è possibile perche in un breve periodi di tempo ad esempio un secondo il sistema genera circa 10000 soluzioni. La proprietà di generare informazioni non solo della soluzione ottimale ma anche delle valide alternative è utilizzata per generare il campionamento di un sistema non completamente conosciuto. Successivamente analizzeremo come trasformare il problema di colorare una mappa in un programma da dare in pasto al computer quantistico.
 
 \lvliii{Problema}
-La mappa del Canada è composta da dieci provincie e tre territori. Tipicamente viene assegnato un colore a ciascuna delle tredici regioni in maniera tale che le regioni adiacenti non presentino lo stesso colore. Le ragioni isolate come ad esempio le isole non fanno parte delle adiacenze. L'idea di che due regioni con lo stesso colore dividano uno stesso bordo è pensato per rendere più evidenti i confini delle regioni. Da qui è naturale porsi il seguente problema: quanti colori sono necessari per colorare la mappa? e sopratutto, quant'è il numero minimo di colori?
+La mappa del Canada è composta da dieci provincie e tre territori per un totale di tredici regioni. Viene assegnato un colore a ciascuna delle tredici regioni in maniera tale che le regioni adiacenti non presentino lo stesso colore. Le ragioni isolate come ad esempio le isole non fanno parte delle adiacenze. L'idea è che due regioni che condividono lo stesso bordo abbiano colori differenti in modo tale da capire senza dubbi dove inizi una regione e dove finisca l'altra. Da qui è naturale porsi il seguente problema: quanti colori sono necessari per colorare la mappa? e sopratutto, quant'è il numero minimo di colori?
 
 \lvliii{Modello di programmazione}
-L'unità base per il calcolo sono i qubit. I qubit sono delle semplici variabili che possono essere impotate a 0 o a 1. Quando programmiamo non impostiamo direttamente i qubit ma gli influenziamo in due modi: primo associamo ad ogni qubit $q_i$ ad un peso $a_i$, secondo associamo ad ciascuna coppia di qubit $q_i q_j$ una forza $b_{ij}$. Ora che abbiamo introdotto i concetti di peso e di forza possiamo definire la funzione di oggetto.
+L'unità base per il calcolo sono i qubit. I qubit sono delle semplici variabili che possono essere impostate a $0$ o a $1$. Quando programmiamo non impostiamo direttamente i qubit ma li influenziamo in due modi: il primo modo è associamo ad ogni qubit $q_i$ ad un peso $a_i$, il secondo modo è associamo ad ciascuna coppia di qubit $q_i$ e $q_j$ una forza $b_{ij}$. Ora che abbiamo introdotto i concetti di peso e di forza possiamo definire la funzione di oggetto.
 $$O(a, b; q) = \sum_{i=1}^N a_i q_i + \sum_{i,j}^N b_{ij} q_i q_j$$
-Questo funzione definirà la distribuzione da cui saranno selezionati i nostri campioni. La prima sommatoria rappresenta i pesi dei qubit, la seconda rappresenta la forza tra le coppie. La cosa importante da osservare è ogni istruzione di macchina quantistica consisterà nel impostare i valori di $a$ e $b$.
+Questo funzione definirà la distribuzione da cui saranno selezionati i nostri campioni. La prima sommatoria $\sum_{i=1}^N a_i q_i$ rappresenta i pesi dei qubit, la seconda $\sum_{i,j}^N b_{ij} q_i q_j$ rappresenta la forza tra le coppie. La cosa importante da osservare è che ogni istruzione macchina consisterà nel impostare i valori di $a$ e $b$.
 
 \lvliii{Colorazione di una regione}
-Scegliamo $C$ come numero di colori. Per ogni reglione associamo $C$ qubit, uno per colore. Siccome ogni regione può avere un solo colore selezionato contemporaneamente se il qubit indicante il colore rosso (per esempio) sara acceso, vorrà dire che gli altri $C-1$ saranno spenti.
-Per semplicità iniziamo dal risolvere il problema con due colori. La nostra funzione oggetto sarà:
+Scegliamo $C$ come numero di colori. Per ogni reglione associamo $C$ qubit, uno per colore $C = N$. Siccome ogni regione può avere un solo colore selezionato contemporaneamente, se il qubit indicante il colore rosso (per esempio) sara acceso, vorrà dire che gli altri $C-1$ saranno spenti. Per semplicità iniziamo dal risolvere il problema con due colori. La nostra funzione oggetto per $N = 2$ sarà:
 $$O(a, b; q) = a_1 q_1 + a_2 q_2 + b_12 q_1 q_2$$
 Enumeriamo i quattro possibili stasi della nostra distribuzione.
-\begin{center}
-  \begin{tabular}{ c | c | c }
-    $q_1$ & $q_2$ & $O(a, b; q)$       \\ \hline
-    0     & 0     & 0                  \\
-    0     & 1     & $a_2$              \\
-    1     & 0     & $a_1$              \\
-    1     & 1     & $a_1 + a_2 + b_12$ \\
-  \end{tabular}
-\end{center}
+\begin{table}
+  \begin{center}
+    \begin{tabular}{ c | c | c }
+      $q_1$ & $q_2$ & $O(a, b; q)$       \\ \hline
+      0     & 0     & 0                  \\
+      0     & 1     & $a_2$              \\
+      1     & 0     & $a_1$              \\
+      1     & 1     & $a_1 + a_2 + b_12$ \\
+    \end{tabular}
+    \caption{Valori funzione oggetto per $N = 2$}
+  \end{center}
+\end{table}
 Dobbiamo fare in modo che gli stati $(0,1,q)$ e $(1,0,q)$ siano i favoriti rispetto gli altri. Per far ciò dobbiamo attribuirli un "energia" inferiore assegnandoli un valore basso come ad esempio $a_1 = a_2 = -1$. Lo stato $(1,1,q)$ è proibito qundi gli assegnamo un valore alto attraverso il parametro $b_12 = 2$.
 Per passare al caso con $C = 3$ bisogna risolvere la tabella di prima considerando la funzione
 $$O(a, b; q) = a_1 q_1 + a_2 q_2 + a_3 q_3 + b_12 q_1 q_2 + b_13 q_1 q_3 + b_23 q_2 q_3$$
 al posto di quella di $C = 2$. Una considerazione che facilita molto la procedura e legata alla simmetria dei colori, dato che non abbiamo preferenze che una regione sia rossa pittosto che blu allora tutti i coefficenti $a$ e $b$ saranno indistinamente uguali e quindi si potrà scrivere:
 $$O(a, b; q) = a (q_1 + q_2 + q_3) + b (q_1 q_2 + q_1 q_3 + q_2 q_3)$$
+Con la conseguente tabella:
+\begin{table}
+  \begin{center}
+    \begin{tabular}{ c | c | c | c }
+      $q_1$ & $q_2$ & $q_2$ & $O(a, b; q)$       \\ \hline
+      0     & 0     & 0     & 0                  \\
+      0     & 0     & 1     & $a$                \\
+      0     & 1     & 0     & $a$                \\
+      0     & 1     & 1     & $2a + b$           \\
+      1     & 0     & 0     & $a$                \\
+      1     & 0     & 1     & $2a + b$           \\
+      1     & 1     & 0     & $2a + b$           \\
+      1     & 1     & 1     & $3a + 3b$          \\
+    \end{tabular}
+    \caption{Valori funzione oggetto per $N = 3$}
+  \end{center}
+\end{table}
+I valori saranno sempre $a = -1$ e $b = 2$.
 Del tutto analoga la procedura per risolvere il caso $C = 4$.
 
 \lvliii{Dal qubit logico a quello fisico}
-Dopo al primo passaggio siamo arrivari a definire una regione, per il caso $C = 4$, come un insieme di 4 qubit con 4 pesi e 16 accoppiamenti di forza. Sfortunatamente al livello fisico la macchina ha dei limiti di collegamentro tra i qubit quindi per risolvere il problema scegliamo di associare una catena di qubit fisici ad uno logico. Per questo problema bisognerà associare due qubit fisici ad uno logico. Nel far ciò bisognerà collegare i 2 fisici con un accoppiamento di forza che cerchi di tenerli allineati e bisognerà ridistribuire i pesi e le forze. Il peso di un qubit fisico in questo caso corrisponderà a per il caso $1/2$ logico e così anche ogni suo accoppiamento di forza.
+Dopo al primo passaggio siamo arrivari a definire una regione, per il caso $C = 4$, come un insieme di 4 qubit con 4 pesi e 16 accoppiamenti di forza. Sfortunatamente al livello fisico la macchina ha dei limiti di collegamentro tra i qubit quindi per risolvere il problema scegliamo di associare una catena di qubit fisici ad uno logico. Per questo problema bisognerà associare due qubit fisici ad uno logico. Nel far ciò bisognerà collegare i 2 fisici con un accoppiamento di forza che cerchi di tenerli allineati e bisognerà ridistribuire i pesi e le forze. Il peso di un qubit fisico, in questo caso, corrisponderà a metà del peso del qubit logico, stessa cosa vale anche per ogni suo accoppiamento di forza.
 
 \lvliii{Collegamento con altre regioni}
-A questo punto abbiamo codificato i nostri colori nei nostri qubit fisici, il prossimo passo e mettere in comunicazione le regioni adiacenti due a due. Quello che ci interessa in particolare è collegare lo setesso colore in due regioni diverse adiacenti, in modo tale da poter impostare un valore di forza di collegameto elevato per impedire che entrambi siano attivi contemporaneamente. Considerando la tabella di prima come esempio di collegamento tra due regioni possiamo dedurre che vogliamo tenere i parametri corrispondenti agli stati  gli stati $(0,1,q)$ e $(1,0,q)$ neutri, mentre, lo stato $(1,1,q)$ lo vogliamo proibire. Per far ciò impostiamo i parametri come $a_1 = a_2 = 0$ e $b_12 = 1$.
+A questo punto abbiamo codificato i nostri colori nei nostri qubit fisici, il prossimo passo e mettere in comunicazione le regioni adiacenti a due a due. Quello che ci interessa in particolare è collegare lo setesso colore in due regioni diverse adiacenti, in modo tale da poter impostare un valore di forza (di collegameto) elevato per impedire che entrambi siano attivi contemporaneamente. Considerando la tabella di prima come esempio di collegamento tra due regioni deduciamo che è necessario tenere i parametri corrispondenti agli stati  gli stati $(0,1,q)$ e $(1,0,q)$ neutri, mentre, lo stato $(1,1,q)$ lo vogliamo proibire. Per far ciò impostiamo i parametri come $a_1 = a_2 = 0$ e $b_12 = 1$.
 
 \lvliii{Limite fisico di vicinanza}
 Il collegamento tra le regioni rappresenta anche esso un problema di collegamento fisico come per i qubit. Per risolvere qusto problema applichiamo una procedura analoga, ovvero, cloniamo le regioni in modo da poter realizzare i collegamenti fisici tra di esse. Si può vedere questo limite rappresentato nella tabella sottostante per le regioni AB, NT, BC.
-\begin{center}
-  \begin{tabular}{ l | c | c | c | c | c }
-      & 0  & 1  & 2  & 3  & 4  \\ \hline
-    0 & NL & ON & MB & SK & AB \\
-    1 & PE & QC & NU & NT & AB \\
-    2 &    & NB & NS & NT & BC \\
-    3 &    &    &    & YT & BC \\
-  \end{tabular}
-\end{center}
+\begin{table}
+  \begin{center}
+    \begin{tabular}{ l | c | c | c | c | c }
+        & 0  & 1  & 2  & 3  & 4  \\ \hline
+      0 & NL & ON & MB & SK & AB \\
+      1 & PE & QC & NU & NT & AB \\
+      2 &    & NB & NS & NT & BC \\
+      3 &    &    &    & YT & BC \\
+    \end{tabular}
+    \caption{Disposizione regioni per adiacenza}
+  \end{center}
+\end{table}
 Anche in questo caso per ogni regione radoppiata i pesi e le forze andranno aggiustati di conseguenza.
 
 \lvliii{Conclusioni}
 Da questo esempio possiamo ottenere tre conclusioni. La prima e che è possibile automatizzare il passaggio da logico a fisico con delle routin e quindi poter semplificare il lavoro del programmatore. La seconda è che la grandezza della mappa che possiamo gestire dipende dal nostro numero di qubit fisici. Ci sono procedure più avanzate che permettono di scomporre mappe più grandi e di gestire i calcoli su pezzi di mappa. La terza e che abbiamo fatto l'esempio con 4 colori ma più generalmente si vuole eseguire problemi più generici che richiederanno più colori e quindi più qubit.
 
 \lvliii{Implementazione in C}
+Viene qui riportato un listato indicatico delle procedure appena elencate. Il listato mira a far capire il funzionamento logico ed è quindi privo dei dettagli quali inclusioni, nomi reali, ecc...
 \lstset{language=C}
 \begin{lstlisting}
 /* STEP 1: accendere i qubit */
