@@ -14,7 +14,7 @@ Questo funzione definirà la distribuzione da cui saranno selezionati i nostri c
 Scegliamo $C$ come numero di colori. Per ogni regione associamo $C$ qubit, uno per colore $C = N$. Siccome ogni regione può avere un solo colore selezionato contemporaneamente, se il qubit indicante il colore rosso (per esempio) sarà acceso, vorrà dire che gli altri $C-1$ saranno spenti. Per semplicità iniziamo dal risolvere il problema con due colori. La nostra funzione oggetto per $N = 2$ sarà:
 $$O(a, b; q) = a_1 q_1 + a_2 q_2 + b_12 q_1 q_2$$
 Enumeriamo i quattro possibili stati della nostra distribuzione.
-\begin{table}
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{ c | c | c }
       $q_1$ & $q_2$ & $O(a, b; q)$       \\ \hline
@@ -32,7 +32,7 @@ $$O(a, b; q) = a_1 q_1 + a_2 q_2 + a_3 q_3 + b_12 q_1 q_2 + b_13 q_1 q_3 + b_23 
 al posto di quella di $C = 2$. Una considerazione che facilita molto la procedura è legata alla simmetria dei colori, dato che non abbiamo preferenze che una regione sia rossa pittosto che blu allora tutti i coefficienti $a$ e $b$ saranno indistinamente uguali e quindi si potrà scrivere:
 $$O(a, b; q) = a (q_1 + q_2 + q_3) + b (q_1 q_2 + q_1 q_3 + q_2 q_3)$$
 Con la conseguente tabella:
-\begin{table}
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{ c | c | c | c }
       $q_1$ & $q_2$ & $q_2$ & $O(a, b; q)$       \\ \hline
@@ -59,7 +59,7 @@ A questo punto abbiamo codificato i nostri colori nei nostri qubit fisici, il pr
 
 \lvliii{Limite fisico di vicinanza}
 Il collegamento tra le regioni rappresenta anche esso un problema di collegamento fisico come per i qubit. Per risolverlo applichiamo una procedura analoga, ovvero, cloniamo le regioni in modo da poter realizzare i collegamenti fisici tra di esse. Si può vedere questo limite rappresentato nella tabella sottostante per le regioni AB, NT, BC.
-\begin{table}
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{ l | c | c | c | c | c }
         & 0  & 1  & 2  & 3  & 4  \\ \hline
