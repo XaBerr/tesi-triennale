@@ -8,3 +8,8 @@
 /Latex/*.idx
 /Latex/*.ilg
 /Latex/*.ind
+/Latex/*.xml
+/Latex/*.blg
+/Latex/*.bcf
+/Latex/*.bbl
+/Latex/*.bib
