@@ -16,5 +16,5 @@ Prendiamo due sistemi chiusi `A` e `B` con differente temperatura, se li connett
 - `S = S_A + S_B`
 - `dE_A = - dE_B` (Prima legge della termodinamica)
 - `dS_A + dS_B > 0` (Seconda legge della termodinamica)
-- `dE_A = T_A + dS_A`
-- `dE_B = T_B + dS_B`
+- `dE_A = T_A * dS_A`
+- `dE_B = T_B * dS_B`
