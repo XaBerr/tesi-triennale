@@ -52,6 +52,19 @@ Costrizioni:
 - `n_1 * E_1 + ... + n_N * E_N = E_{tot} = N * <E>`
 - `p(i) = n_i / N`
 Supponiamo ora che `N` sia un numero finito e che `E` possa assumere un numero infinito di valori.
-La maggior parte degli `n_i` saranno `0`. Il numero di collezioni di stati che possiamo avere sono `N! / (n_1! * ... * n_N!)`. Cerchiamo di massimizzare `log()`.
+La maggior parte degli `n_i` saranno `0`. Il numero di collezioni di stati che possiamo avere sono `N! / (n_1! * ... * n_N!)`. Usamo ora l'apporssimazione di Stearling:
+- `N! / (n_1! * ... * n_N!) = N^N e^-N / ((n_1^n_1 * ... * n_N^n_N)*e^-(n_1 + ... + n_N))`
+- `N! / (n_1! * ... * n_N!) = N^N / (n_1^n_1 * ... * n_N^n_N) = c`
+Cerchiamo di massimizzare `log(N! / (\Pi_i n_i))` sfruttando l'approsimazione appena calcolata:
+- `log(c) = N log(N) - \sum_i n_i log(n_i)`
+- `log(c) = N log(N) - \sum_i N p(i) (log(N) + log(p(i)))`
+- `log(c) = N log(N) - \sum_i N p(i) log(N) - \sum_i N p(i) log(p(i))`
+- `log(c) = N log(N) - N log(N) - N \sum_i p(i) log(p(i))`
+- `log(c) = N log(N) - N log(N) - N S`
+- `log(c) = - N S`
+Da questo calcolo otteniamo il numero di occupazione che massimizza il valore di riarrangiamenti del sistema.
+Vogliamo massimizzare l'entropia tenendo fisso `N` usando come costrizioni:
+- `\sum_i p(i) = 1`
+- `\sum_i p(i) * E_i = <E>`
 
-(1:09:30)
+(1:24:05)
