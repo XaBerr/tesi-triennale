@@ -33,4 +33,25 @@ Sostituendo nella seconda legge possiamo scrivere:
 Sapendo che `T_B - T_A` è un numero positivo per ipotesi, concludiamo che `dS_A > 0`.
 Moltiplicando per `T_A` otteniamo `dE_A = T_A * dS_A > 0` e quindi `dE_B < 0`, in altre parole l'energia si sposta da `B` ad `A`.
 
-(28:50)
+## Approsimazione di Stirling
+`N! = N^N * e^-N`
+Prova:
+- `log(N!) = \sum_{x=1}^N log(x)`
+- `log(N!) = \integrate_1^N log(x) dx`
+- `log(N!) = [x log(x) - x]_1^N`
+- `log(N!) = [N log(N) - N] - [1 log(1) - 1]`
+- `log(N!) = log(N^N) - (N - 1) ~= log(N^N) - N`
+- `N! = N^N e^-N`
+
+## Sistema non chiuso
+Pensiamo un sottosistema `A` contenuto in un sistema molto più grosso `B` che fa da bagno termico.
+Se il sistema `B` è moltro grosso anche se un po' di energia viene trasferita ina `A` la temperatura non di `B` non cambia. Una scelta che risulta spesso comoda di `B` è considerarlo come una catena di `N` elementi della stessa dimensione di `A`, dove `N` è un numero molto grande.
+Il numero di occupazione `n_i` è il numero di sistemi che sono nello stato `i`.
+Costrizioni:
+- `n_1 + ... + n_N = N`
+- `n_1 * E_1 + ... + n_N * E_N = E_{tot} = N * <E>`
+- `p(i) = n_i / N`
+Supponiamo ora che `N` sia un numero finito e che `E` possa assumere un numero infinito di valori.
+La maggior parte degli `n_i` saranno `0`. Il numero di collezioni di stati che possiamo avere sono `N! / (n_1! * ... * n_N!)`. Cerchiamo di massimizzare `log()`.
+
+(1:09:30)
