@@ -12,7 +12,7 @@ Questo funzione definirà la distribuzione da cui saranno selezionati i nostri c
 
 \lvliii{Colorazione di una regione}
 Scegliamo $C$ come numero di colori. Per ogni regione associamo $C$ qubit, uno per colore $C = N$. Siccome ogni regione può avere un solo colore selezionato contemporaneamente, se il qubit indicante il colore rosso (per esempio) sarà acceso, vorrà dire che gli altri $C-1$ saranno spenti. Per semplicità iniziamo dal risolvere il problema con due colori. La nostra funzione oggetto per $N = 2$ sarà:
-$$O(a, b; q) = a_1 q_1 + a_2 q_2 + b_12 q_1 q_2$$
+$$O(a, b; q) = a_1 q_1 + a_2 q_2 + b_{12} q_1 q_2$$
 Enumeriamo i quattro possibili stati della nostra distribuzione.
 \begin{table}[h]
   \begin{center}
@@ -21,14 +21,14 @@ Enumeriamo i quattro possibili stati della nostra distribuzione.
       0     & 0     & 0                  \\
       0     & 1     & $a_2$              \\
       1     & 0     & $a_1$              \\
-      1     & 1     & $a_1 + a_2 + b_12$ \\
+      1     & 1     & $a_1 + a_2 + b_{12}$ \\
     \end{tabular}
     \caption{Valori funzione oggetto per $N = 2$}
   \end{center}
 \end{table}
-Dobbiamo fare in modo che gli stati $(0,1,q)$ e $(1,0,q)$ siano i favoriti rispetto gli altri. Per far ciò dobbiamo attribuirgli un' "energia" inferiore assegnandogli un valore basso come ad esempio $a_1 = a_2 = -1$. Lo stato $(1,1,q)$ è proibito qundi gli assegniamo un valore alto attraverso il parametro $b_12 = 2$.
+Dobbiamo fare in modo che gli stati $(0,1,q)$ e $(1,0,q)$ siano i favoriti rispetto gli altri. Per far ciò dobbiamo attribuirgli un' "energia" inferiore assegnandogli un valore basso come ad esempio $a_1 = a_2 = -1$. Lo stato $(1,1,q)$ è proibito qundi gli assegniamo un valore alto attraverso il parametro $b_{12} = 2$.
 Per passare al caso con $C = 3$ bisogna risolvere la tabella di prima considerando la seguente funzione
-$$O(a, b; q) = a_1 q_1 + a_2 q_2 + a_3 q_3 + b_12 q_1 q_2 + b_13 q_1 q_3 + b_23 q_2 q_3$$
+$$O(a, b; q) = a_1 q_1 + a_2 q_2 + a_3 q_3 + b_{12} q_1 q_2 + b_{13} q_1 q_3 + b_{23} q_2 q_3$$
 al posto di quella di $C = 2$. Una considerazione che facilita molto la procedura è legata alla simmetria dei colori, dato che non abbiamo preferenze che una regione sia rossa pittosto che blu allora tutti i coefficienti $a$ e $b$ saranno indistinamente uguali e quindi si potrà scrivere:
 $$O(a, b; q) = a (q_1 + q_2 + q_3) + b (q_1 q_2 + q_1 q_3 + q_2 q_3)$$
 Con la conseguente tabella:
@@ -55,7 +55,7 @@ Del tutto analoga la procedura per risolvere il caso $C = 4$.
 Dopo il primo passaggio siamo arrivari a definire una regione, per il caso $C = 4$, come un insieme di 4 qubit con 4 pesi e 16 accoppiamenti di forza. Sfortunatamente al livello fisico la macchina ha dei limiti di collegamentro tra i qubit quindi per risolvere il problema scegliamo di associare una catena di qubit fisici ad uno logico. Per questo bisognerà associare due qubit fisici ad uno logico. Nel far ciò si dovrà collegare i 2 fisici con un accoppiamento di forza che cerchi di tenerli allineati e si dovrà ridistribuire i pesi e le forze. Il peso di un qubit fisico, in questo caso, corrisponderà a metà del peso del qubit logico, stessa cosa vale anche per ogni suo accoppiamento di forza.
 
 \lvliii{Collegamento con altre regioni}
-A questo punto abbiamo codificato i nostri colori nei nostri qubit fisici, il prossimo passo è mettere in comunicazione le regioni adiacenti a due a due. Quello che ci interessa in particolare è collegare lo stesso colore in due regioni diverse adiacenti, in modo tale da poter impostare un valore di forza (di collegameto) elevato per impedire che entrambi siano attivi contemporaneamente. Considerando la tabella di prima come esempio di collegamento tra due regioni deduciamo che è necessario tenere i parametri corrispondenti agli stati $(0,1,q)$ e $(1,0,q)$ neutri, mentre lo stato $(1,1,q)$ lo vogliamo proibire. Per far ciò impostiamo i parametri come $a_1 = a_2 = 0$ e $b_12 = 1$.
+A questo punto abbiamo codificato i nostri colori nei nostri qubit fisici, il prossimo passo è mettere in comunicazione le regioni adiacenti a due a due. Quello che ci interessa in particolare è collegare lo stesso colore in due regioni diverse adiacenti, in modo tale da poter impostare un valore di forza (di collegameto) elevato per impedire che entrambi siano attivi contemporaneamente. Considerando la tabella di prima come esempio di collegamento tra due regioni deduciamo che è necessario tenere i parametri corrispondenti agli stati $(0,1,q)$ e $(1,0,q)$ neutri, mentre lo stato $(1,1,q)$ lo vogliamo proibire. Per far ciò impostiamo i parametri come $a_1 = a_2 = 0$ e $b_{12} = 1$.
 
 \lvliii{Limite fisico di vicinanza}
 Il collegamento tra le regioni rappresenta anche esso un problema di collegamento fisico come per i qubit. Per risolverlo applichiamo una procedura analoga, ovvero, cloniamo le regioni in modo da poter realizzare i collegamenti fisici tra di esse. Si può vedere questo limite rappresentato nella tabella sottostante per le regioni AB, NT, BC.
