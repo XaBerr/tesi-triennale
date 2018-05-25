@@ -26,14 +26,14 @@
 <hr>
 
 - **comparazione per algoritmi di ottimizzazione**(60%)
-  - **simulate annealing** (30%)
+  - **simulated annealing** (30%)
     - **modello di ising** (15%)<br>
       (Quantum annealing with manufactured spins)<br>
       (Colloquium: Quantum annealing and analog quantum computation)<br>
     - **algoritmo** (15%)<br>
       (Optimization by Simulated Annealing 1983)<br>
       (SIMULATED  ANNEALING, Aarts)<br>
-  - **simulate quantum annealaing** (30%)
+  - **simulated quantum annealaing** (30%)
     - **modello di ising transverso** (15%)<br>
       (Quantum annealing by the path-integral Monte Carlo method:The two-dimensional random Ising model)<br>
       (Colloquium: Quantum annealing and analog quantum computation)<br>
@@ -42,7 +42,6 @@
       (Quantum Annealing and Related Optimization Methods)<br>
 
 <hr>
-
 
 - **conclusioni**(10%)
   - **quantum speed-up**(10%)<br>
