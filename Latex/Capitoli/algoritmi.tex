@@ -1,9 +1,29 @@
 \lvli{Comparazione per algoritmi di ottimizzazione}
 \lvlii{Simulated annealing}
 \lvliii{Modello di ising}
-IS.
+Il modello di Ising a due dimensioni è possibile immaginarlo come una griglia $N \times N$ composta da \textit{nodi}, che rappresentano gli atomi, e \textit{archi}, che rappresentano le
+interconnessioni tra essi. Ogni nodo può assumere come valori $1$ in caso l'atomo sia spin-up o $-1$ in caso sia spin-down. Questo modello associa alla configurazine degli atomi una funzione Hamiltoniana:
+$$ H(\vec{a}, \vec{b}, \vec{q}) = - \sum_{i \in A } a_i q_i - \frac{1}{2} \sum_{i \in A} \sum_{j \in B_i} b_{ij} q_i q_j $$
+in cui $A$ è l'insieme dei nodi e $B_i$ è l'insieme dei vicini del nodo $i$. In particolare $a_i$ è il valore di energia associata al nodo $i$, $q_i$ è il valore dello spin del nodo $i$ e $b_{ij}$ è il valore di energia associato alla coppia di vicinanza dei nodi $i$ e $j$. È importante tenere conto che l'hamiltoniana descritta non fa riferimento al numero di dimensioni, infatti questo modello può essere astratto a $n$ dimensioni.
 \lvliii{Algoritmo}
-SA.
+Il primo step del processo del simulated annealing consiste nel determinare uno stato di
+partenza. Solitamente questo avviene in maniera casuale e, perciò, la condizione iniziale può anche essere \textit{non ammissibile}. L’idea alla base dell’algoritmo è quella di arrivare a valutare un sottoinsieme delle soluzioni ammissibili partendo dallo stato iniziale scelto e applicando una successione di piccole perturbazioni.
+
+L'algoritmo prevede un loop di $n$ iterazioni che simula l'abbassamento della temperatura da $t_{max}$ (temperatura di partenza) a $t_{min}$ (temperatura di arrivo) con uno scalino di $t_{delta}$. Dati quindi i parametri iniziali $t_{max}, t_{min} \in \mathbb{R}_{\geq 0}$ e $ t_{delta} \in \mathbb{R}_{> 0}$, possiamo ricavarci il valore di $n$:
+$$n = \frac{t_{max}-t_{min}}{t_{delta}}$$
+con $n \in \mathbb{N}$ e $t_{max} > t_{min}$.
+
+Ad ogni iterazione del ciclo viene generata una soluzione \textit{vicina} a quella \textit{attuale} e viene deciso quale delle due tenere.
+
+Un esempio di criterio di vicinanza può essere espresso attraverso il peso di Hamming: supponiamo di avere una sequenza di 8 bit $00001111$ con peso di Hamming 4, se noi scegliamo 2 come peso di Hamming massimo di vicinanza, allora una configurazione vicina può essere $00111111$.
+
+Lo step successivo è l'applicazione dal criterio di Metropolis, che rappresenta il cuore dell'algoritmo: in questo passo viene scelto se tenere la configurazione \textit{attuale} o la configurazione \textit{vicina}. Se la configurazione \textit{vicina} è migliore di quella \textit{attuale} viene certamente scelta quella \textit{vicina}, contrariamente se quella \textit{attuale} è meglio di quella \textit{vicina} si sceglierà di tenere quella più svantaggiosa delle due (\textit{vicina}) in maniera semi-casuale.
+La semi-casualità viene data dalla generazione di un numero casuale $k \in [0,1]$ e dal confrontato con la distribizione di Boltzman di parametri: $t = t_{max} - t_{delta} * n$ e $\Delta E = |E_{vicina}| - |E_{attuale}|$.
+$$B(\Delta E, t) = e^{- \frac{\Delta E}{k_B * t}}$$
+Questo significa che, in corrispondenza di temperature alte il sistema avrà la possibilità di muoversi liberamente di configurazione in configurazione, mentre all’abbassarsi della temperatura la sua probabilità di accettare soluzioni peggiori diminuirà.
+
+In generale si può vedere l'algoritmo SA come una procedura che mira a minimizzare la configurazione di energia di un sistema dato. Il modello associerà una variabile $\alpha_i \in \mathbb{R}$ modificabile ad ogni costante $\beta_i \in \mathbb{R}$, che rappresenta l'energia per ogni punto del sistema. Intuitivamente si può pensare allo scopo della procedura come quello di trovare gli $\alpha_i$ in modo tale da minimizzare il valore $\alpha_i * \beta_i$. Chiaramente questo è solo un'esempio, la funzione di enegia dipende dal modello di riferimento e quindi può cambiare.
+
 \lvlii{Simulated quantum annealing}
 \lvliii{Modello di ising trasverso}
 IS.
