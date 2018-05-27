@@ -32,13 +32,21 @@ In questa versione al posto dei valori di spin troviamo le matrici di Pauli $\si
 
 \lvliii{Algoritmo}
 \lvliv{Approssimazione}
-Il primo passo per implementare il SQA è approssimare il modello matematico quantistico attraverso un modello classico computabile da un calcolatore tradizionale. Sfruttando il formalismo Suzuki-Trotter possiamo mappare il nostro modello TIM n-dimensionale in un modello IM (n+1)-dimensionale. La procedura per ricavarci il modello IM parte dalla considerazione di dividere l'hemiltoniana $H = H_{classic} + H_{kinetic}$ nella sua parte classica $H_{classic}$ e nella sua parte quantistica $H_{kinetic}$. Ora si può scrivere la funzione di partizione
+Il primo passo per implementare il SQA è approssimare il modello matematico quantistico attraverso un modello classico computabile da un calcolatore tradizionale. Sfruttando il formalismo Suzuki-Trotter possiamo mappare il nostro modello TIM n-dimensionale in un modello IM (n+1)-dimensionale dove la dimensione aggiuntiva rappresenta l'evoluzione temporale del sistema delle sue altre dimensioni. La procedura per ricavarci il modello IM parte dalla considerazione di dividere l'hemiltoniana $H = H_{classic} + H_{kinetic}$ nella sua parte classica di energia potenziale $H_{classic}$ e nella sua parte transversa rappresentante l'energia cinetica $H_{kinetic}$. Ora si può scrivere la funzione di partizione
 $$Z = Tr (exp(-\frac{H_{classic} + H_{kinetic}}{T}))$$ e attraverso la formula di Trotter riscriverla come:
 $$Z= \lim_{M \to +\infty} \sum_i \langle\sigma_i|[exp(-\frac{H_{classic}}{M \cdot T}) \cdot exp(-\frac{H_{kinetic}}{M \cdot T})]^M| \sigma_i\rangle$$
-
-$$\prod^M_{k = 1}\langle\sigma_{1,k}\cdot\cdot\cdot\sigma_{N,k}|exp(\frac{1}{M \cdot T} \sum_{i,j} J_{ij}\sigma^x_i\sigma^x_j)|\sigma_{1,k+1}\cdot\cdot\cdot\sigma_{N,k+1}\rangle = exp(\sum_{i,j=1}^N\sum_{k=1}^M \frac{J_{ij}}{M \cdot T}\sigma_{ik}\sigma_{jk})$$
-
-$$\prod^M_{k = 1}\langle\sigma_{1,k}\cdot\cdot\cdot\sigma_{N,k}|exp(\frac{\Gamma}{M \cdot T} \sum_{i}\sigma^z_i)|\sigma_{1,k+1}\cdot\cdot\cdot\sigma_{N,k+1}\rangle =$$
-$$[\frac{1}{2} sinh ( \frac{2\Gamma}{M \cdot T} )]^{\frac{N \cdot M}{2}} exp( \frac{1}{2} ln(coth(\frac{\Gamma}{M \cdot T}))\cdot\sum_{i=1}^N\sum_{k=1}^M \frac{J_{ij}}{M \cdot T}\sigma_{i,k}\sigma_{i,k+1})$$
+Applicandola alla funzione di partizione possiamo dividere in la parte potenziale:
+$$Z_{classic} = \prod^M_{k = 1}\langle\sigma_{1,k}\cdot\cdot\cdot\sigma_{N,k}|exp(\frac{1}{M \cdot T} \sum_{i,j} J_{ij}\sigma^x_i\sigma^x_j)|\sigma_{1,k+1}\cdot\cdot\cdot\sigma_{N,k+1}\rangle = exp(\sum_{i,j=1}^N\sum_{k=1}^M \frac{J_{ij}}{M \cdot T}\sigma_{ik}\sigma_{jk})$$
+dove i valori $\sigma_i = \pm 1$ sono gli autovalori dell'operatore $\sigma^x$, e la parte cinetica:
+$$Z_{kinetic} = \prod^M_{k = 1}\langle\sigma_{1,k}\cdot\cdot\cdot\sigma_{N,k}|exp(\frac{\Gamma}{M \cdot T} \sum_{i}\sigma^z_i)|\sigma_{1,k+1}\cdot\cdot\cdot\sigma_{N,k+1}\rangle =$$
+$$= [\frac{1}{2} sinh ( \frac{2\Gamma}{M \cdot T} )]^{\frac{N \cdot M}{2}} exp( \frac{1}{2} ln(coth(\frac{\Gamma}{M \cdot T}))\cdot\sum_{i=1}^N\sum_{k=1}^M \frac{J_{ij}}{M \cdot T}\sigma_{i,k}\sigma_{i,k+1})$$
+dove in questo caso $\sigma_i = \pm 1$ sono gli autovalori dell'operatore $\sigma^z$.
+A questo punto ci ricaviamo:
+$$ Z \simeq Z_M = C^{NM} \sum_{z^1}\cdot\cdot\cdot\sum_{z^M} exp(\frac{-H_{d+1}}{M\cdot T})$$
+ed in fine otteniamo:
+$$H_{d+1} = - \sum^M_{k = 1}(\sum_{i,j} J_{i,j} \sigma^k_i \sigma^k_j + J_{orto} \sum_i \sigma^k_i \sigma^{k+1}_i)$$
+con  $\sigma_i = \pm 1$ i valori di spin classici, $M$ è la dimensione aggiuntiva, $T$ la temperatura fissa del sistema, $J_{i,j} \in \mathbb{R}$ e
+$$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
+$H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 \lvliv{Algoritmo}
 SQA con PIMC.
