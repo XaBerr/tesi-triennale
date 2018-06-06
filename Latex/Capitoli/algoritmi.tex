@@ -51,4 +51,7 @@ $$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
 $H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 
 \lvliii{Algoritmo}
-SQA con PIMC.
+Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssimazione nella dimensione temporale.
+Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
+Il valore $K(t) = -ln(tanh(\frac{\Gamma}{M \cdot T}))$ viene determinato scegliendo una $\Gamma_{max}$ iniziale. Un buon modo per sceglierla e fare delle simulazioni brevi preventive per testare testare alcuni valori $\Gamma_{max}$ scegli arbitrariamente. Il valore deve essere non troppo alto altrimenti non ci sarà l'accoppiamento nella dimensione temporale e neanche troppo basso se no l'accoppiamentro sarà troppo alto e l'algoritmo avrà le stesse prestazioni di quello classico.
+L'algoritmo prevede un loop di $n$ iterazioni che simula il collassamento da superposition ad osservabile diminuendo l'inverso della correlazione da $\Gamma_{max}$ (particelle scorrelate) a $\Gamma_{min}$ (particelle correlate) con uno scalino di $\Gamma_{delta}$.
