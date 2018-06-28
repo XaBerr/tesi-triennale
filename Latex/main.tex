@@ -1,67 +1,26 @@
 \input{Template/template.tex}
-
 \begin{document}
 
+% PRIMA PAGINA
 \input{Comune/PrimaPagina.tex}
-\thispagestyle{empty} % pagina bianca dopo il titolo
+\thispagestyle{empty}
 \cleardoublepage
 
-
-\pagenumbering{roman} % numerazione romana per gli indici
+% PAGINE DI INDICE
+\pagenumbering{roman}
 \thispagestyle{empty}
+\input{Comune/indice.tex}
+\input{Comune/indiceFigure.tex}
+\input{Comune/indiceCodice.tex}
 
+% CAPITOLI
 \clearpage{\pagestyle{plain}\cleardoublepage}
-\tableofcontents
-
-\clearpage{\pagestyle{plain}\cleardoublepage}
-\listoffigures
-
-\clearpage{\pagestyle{plain}\cleardoublepage}
-\lstlistoflistings
-
-
-\clearpage{\pagestyle{plain}\cleardoublepage} % numerazione arabica per i capitoli
 \pagenumbering{arabic}
-
-%\clearpage{\pagestyle{plain}\cleardoublepage}
-%\chapter*{Sommario}
-%\addcontentsline{toc}{chapter}{Sommario}
-%\input{sommario}
-
-
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% \chapter{Introduzione}
-\lvli{Introduzione}
-%\input{introduzione.tex}
-
-%\clearpage{\pagestyle{plain}\cleardoublepage}
-%\chapter{Descrizione del progetto}
-%\label{cha:descrizione}
-%\input{descrizione.tex}
-
-%\clearpage{\pagestyle{plain}\cleardoublepage}
-%\chapter{Progettazione e realizzazione del Database}
-%\label{cha:progettazione_concettuale}
-%\input{progettazione_concettuale.tex}
+\input{Capitoli/introduzione.tex}
+\input{Capitoli/dwave.tex}
+\input{Capitoli/algoritmi.tex}
+\input{Capitoli/conclusioni.tex}
 
 
-
-%\clearpage{\pagestyle{plain}\cleardoublepage}
-%\chapter{Analisi del Framework e software utilizzato}
-%\label{cha:analisi_framework}
-%\input{analisi_framework.tex}
-
-%\clearpage{\pagestyle{plain}\cleardoublepage}
-%\chapter{Conclusioni}
-%\label{cha:conclusioni}
-%\input{conclusioni.tex}
-
-%\clearpage{\pagestyle{plain}\cleardoublepage}
-%\appendix
-%\chapter{Codice SQL}
-%\label{cha:codice_sql}
-%\input{codice_sql.tex}
-%%%
-%\input{bibliografia.tex}
-
+\input{Comune/bibliografia.tex}
 \end{document}
