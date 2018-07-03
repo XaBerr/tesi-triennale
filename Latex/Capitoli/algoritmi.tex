@@ -1,5 +1,7 @@
 \lvli{Comparazione per algoritmi di ottimizzazione}
 \lvlii{Simulated annealing}
+\lvliii{Introduzione}
+\cite{QA,ST}Il Simulated Annealing (SA) nasce come metodo di simulazione per il classica annealing ed è un’euristica di ricerca locale che trova le sue maggiori applicazioni nell’ambito dei problemi di ottimizzazione, sia combinatoriale che discreta. Esso, in quanto euristica, viene utilizzato come algoritmo per la risoluzione di problemi NP-hard, classe di complessità alla quale appartengono problemi troppo onerosi dal punto di vista temporale per gli algoritmi classici.
 \lvliii{Modello di Ising}
 \cite{QA}Il modello di Ising (IM) a due dimensioni è possibile immaginarlo come una griglia $N \times N$ composta da \textit{nodi}, che rappresentano gli atomi, e \textit{archi}, che rappresentano le interazioni tra essi. Ogni nodo può assumere come valori $1$ in caso l'atomo sia spin-up o $-1$ in caso sia spin-down. Esistono due varianti del modello IM quella di \idx{Sherrington-Kirkpatrick} (SK) dove l'interazione di ogni particella ha raggio infinito e quello di  \idx{Edwards-Anderson} (EA) dove l'interazione ha raggio finito. In questa discussione faremo sempre riferimento al modello EA con raggio unitario, ovvero le particelle interaggiranno soltanto con quelle adiacenti. A questo modello sarà associata una funzione Hamiltoniana:
 $$ H(\vec{a}, \vec{b}, \vec{q}) = - \sum_{i \in A } a_i q_i - \frac{1}{2} \sum_{i \in A} \sum_{j \in B_i} b_{ij} q_i q_j $$
