@@ -1,15 +1,17 @@
 \lvli{Conclusioni}
 \lvlii{Quantum speedup}
-L'interesse nei quantum computer è legato alla loro capacità di essere molto più veloci dei computer tradizionali a risolvere un determinato tipo di problemi, questa capacità prende il nome di \idx{quantum speedup}. Al livello matematico è possibile definirlo come il limite del rapporto
+L'interesse nei quantum computer è legato alla loro capacità di essere molto più veloci dei computer tradizionali a risolvere un determinato tipo di problemi, questa capacità prende il nome di \idx{quantum speedup}. Al livello matematico è possibile definirlo\cite{DDQS} come il limite del rapporto
 $$S = \lim_{N \to \infty} \frac{C(N)}{Q(N)}$$
 tra il tempo $C(N)$ neccessario per un computer classico per risolvere un problema di dimensioni $N$ e $Q(N)$ il tempo per un computer quantistico per risolvere lo stesso problema. Questa definizione non richiede la capacità di un quantum computer di ridurre un problema da esponenziale a polinomiale come anticipato nell'introduziome ma valuta solo la capacità si scaling con l'aumentare delle dimensioni del problema.
 
 Per analizzare il quantum speedup del D-Wave è stato scelto di confrontarlo con due algoritmi classici molto simili SA e SQA, nella ricerca del ground state attraverso un modello di Ising dello spin glass.
-La scelta di tale problema è dipesa dalla capacità di essi di essere rimappati un qualsiasi problema np-hard. Per il calcolo di $Q(N)$ sono state fatte delle simulazioni modificando varie parametri nel D-Wave One e nel D-Wave Two e i loro tempi sono stati valutati come $T_{DW}(N) = Q(N)$. Per quanto riguarda i computer classici è sono state eseguite delle simulazioni parallele per ogni $C(N)$ le cui prestazioni sono state misurate compensando la componente parallela come
- $\frac{T_{SA-SQA}(N)}{N} \simeq C(N)$. Da qui è stata definita la realzione:
+La scelta di tale problema è dipesa dalla capacità di essi di essere rimappati un qualsiasi problema np-hard. Per il calcolo di $Q(N)$ sono state fatte delle simulazioni modificando varie parametri nel D-Wave One e nel D-Wave Two e i loro tempi sono stati valutati come $T_{DW}(N) = Q(N)$. Per quanto riguarda i computer classici è sono state eseguite delle simulazioni parallele per ogni $C(N)$ le cui prestazioni sono state misurate compensando la componente parallela\cite{EQA} come
+ $\frac{T_{SA-SQA}(N)}{N} \simeq C(N)$. Da qui è stata definita\cite{DDQS} la realzione:
 $$S_{DW} = \lim_{N \to \infty} \frac{T_{SA-SQA}(N)}{N \cdot T_{DW}(N)}$$
 
-Sono state fatte delle comparazioni tra SA e DW\cite{DDQS} e tra SQA e DW\cite{QVC}.
+Sono state fatte delle comparazioni tra SA e DW\cite{DDQS} e tra SQA e DW\cite{QVC}. Ognuna delle comparazioni ha dimostrato che il DW dopo un certo numero $N_{crit}$ di spin inizia ad avere prestazioni inferiori rispetto ad entrambi gli algoritmi, questa è un evidente prova della \idx{mancanza di speedup} ad oggi dei sistemi testati. La mancanza di speedup non vuol dire che l'architettua così pensata non possa presentare speedup in futuro, infatti gli ottimi risultati ottenuti dal DW sotto $N_{crit}$ fanno pensare che il quantum speedup non sia raggiunto a causa della difficile calibrazione e rimozione dei rumori termici per grandi $N$ come spiegato nel capitolo dell'architettura.
+
+Nonostante il fallimento nel dimostrare lo speedup si è scoperto un'altro legame moltro interessante, quello tra il CT-SQA e il DW. È possibile dividere il SQA in due varianti: quella DT-SQA discreta definita nel capitolo sugli algoritmi e quella CT-SQA continua che è ottenuta
 
 
 
