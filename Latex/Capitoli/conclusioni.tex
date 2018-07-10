@@ -1,3 +1,33 @@
 \lvli{Conclusioni}
-\lvlii{Quantum speed-up}
-Cos'è? c'è o no?.
+\lvlii{Quantum speedup}
+L'interesse nei quantum computer è legato alla loro capacità di essere molto più veloci dei computer tradizionali a risolvere un determinato tipo di problemi, questa capacità prende il nome di \idx{quantum speedup}. Al livello matematico è possibile definirlo come il limite del rapporto
+$$S = \lim_{N \to \infty} \frac{C(N)}{Q(N)}$$
+tra il tempo $C(N)$ neccessario per un computer classico per risolvere un problema di dimensioni $N$ e $Q(N)$ il tempo per un computer quantistico per risolvere lo stesso problema. Questa definizione non richiede la capacità di un quantum computer di ridurre un problema da esponenziale a polinomiale come anticipato nell'introduziome ma valuta solo la capacità si scaling con l'aumentare delle dimensioni del problema.
+
+Per analizzare il quantum speedup del D-Wave è stato scelto di confrontarlo con due algoritmi classici molto simili SA e SQA, nella ricerca del ground state attraverso un modello di Ising dello spin glass.
+La scelta di tale problema è dipesa dalla capacità di essi di essere rimappati un qualsiasi problema np-hard.
+
+
+% Defining and detecting quantum speed up
+% Definizione di quantum speedup S(N).
+% Si cerca lo speedup comparando algoritmi simili.
+% Per i problemi semplici c'è per quelli complessi no (108q).
+% SA meglio di SQA.
+% Magari:
+% C'è troppo errore termico
+% Ci sono errori di calibrazione
+% Non ha speedup
+
+%Evidence for quantum annealing
+% DW si comporta molto di più come SQA rispetto SA e SD.
+% sqrt N viene mappato in N per migliorare le prestazioni.
+% DW ha un t_a alto.
+% La divisione per N serve per eliminare il vantaggio del parallelismo.
+
+% Quantum vs classical annealing
+% SQA è superiore al SA.
+% QA non ha speedup.
+% DT-SQA è superiore al CT-SQA.
+% CT-SQA ha un energia residua superiore.
+% CT-SQA serve per simulare il QA.
+% è possibile che il QA sia più veloce del CT-SQA.
