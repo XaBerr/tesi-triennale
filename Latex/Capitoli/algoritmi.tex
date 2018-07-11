@@ -3,6 +3,11 @@
 \lvliii{Introduzione}
 \cite{QA,ST}Il Simulated Annealing (SA) nasce come metodo di simulazione per il classica annealing ed è un’euristica di ricerca locale che trova le sue maggiori applicazioni nell’ambito dei problemi di ottimizzazione, sia combinatoriale che discreta. Esso, in quanto euristica, viene utilizzato come algoritmo per la risoluzione di problemi NP-hard, classe di complessità alla quale appartengono problemi troppo onerosi dal punto di vista temporale per gli algoritmi classici.
 \lvliii{Modello di Ising}
+\begin{wrapfloat}{figure}{I}{0pt}
+\includegraphics[width=0.4\textwidth]{Immagini/ising.jpg}
+\caption{Modello di Ising (EA).}
+\label{figura:ising}
+\end{wrapfloat}
 \cite{QA}Il modello di Ising (IM) a due dimensioni è possibile immaginarlo come una griglia $N \times N$ composta da \textit{nodi}, che rappresentano gli atomi, e \textit{archi}, che rappresentano le interazioni tra essi. Ogni nodo può assumere come valori $1$ in caso l'atomo sia spin-up o $-1$ in caso sia spin-down. Esistono due varianti del modello IM quella di \idx{Sherrington-Kirkpatrick} (SK) dove l'interazione di ogni particella ha raggio infinito e quello di  \idx{Edwards-Anderson} (EA) dove l'interazione ha raggio finito. In questa discussione faremo sempre riferimento al modello EA con raggio unitario, ovvero le particelle interaggiranno soltanto con quelle adiacenti. A questo modello sarà associata una funzione Hamiltoniana:
 $$ H(\vec{a}, \vec{b}, \vec{q}) = - \sum_{i \in A } a_i q_i - \frac{1}{2} \sum_{i \in A} \sum_{j \in B_i} b_{ij} q_i q_j $$
 in cui $A$ è l'insieme dei nodi e $B_i$ è l'insieme dei vicini del nodo $i$. In particolare $a_i$ è il valore di energia associata al nodo $i$, $q_i$ è il valore dello spin del nodo $i$ e $b_{ij}$ è il valore di energia associato alla coppia di vicinanza dei nodi $i$ e $j$. È importante tenere conto che l'hamiltoniana descritta non fa riferimento al numero di dimensioni, infatti questo modello può essere astratto a $n$ dimensioni.
@@ -35,6 +40,11 @@ $$ H(\vec{a}, \vec{b}, \vec{\sigma}, \vec{\Lambda}, \Gamma_{orto}) = - \sum_{i \
 In questa versione al posto dei valori di spin troviamo le matrici di Pauli $\sigma^x_i$ e $\sigma^z_i$ per rappresentare le super position e in aggiunta dei coefficenti $\Lambda_i$ che parametrizzano l'effetto tunneling.
 
 \lvliii{Approssimazione Suzuki-Trotter}
+\begin{wrapfloat}{figure}{I}{0pt}
+\includegraphics[width=0.4\textwidth]{Immagini/suzuki.jpg}
+\caption{Approssimazione Suzuki-Trotter.}
+\label{figura:suzuki}
+\end{wrapfloat}
 \cite{QA, PIMC}Il primo passo per implementare il SQA è approssimare il modello matematico quantistico attraverso un modello classico computabile da un calcolatore tradizionale. Sfruttando il formalismo Suzuki-Trotter possiamo mappare il nostro modello TIM n-dimensionale in un modello IM (n+1)-dimensionale dove la dimensione aggiuntiva rappresenta l'evoluzione temporale del sistema delle sue altre dimensioni. La procedura per ricavarci il modello IM parte dalla considerazione di dividere l'hemiltoniana $H = H_{classic} + H_{kinetic}$ nella sua parte classica di energia potenziale $H_{classic}$ e nella sua parte transversa rappresentante l'energia cinetica $H_{kinetic}$. Ora si può scrivere la \idx{funzione di partizione}
 $$Z = Tr (exp(-\frac{H_{classic} + H_{kinetic}}{T}))$$ e attraverso la formula di Trotter riscriverla come:
 $$Z= \lim_{M \to +\infty} \sum_i \langle\sigma_i|[exp(-\frac{H_{classic}}{M \cdot T}) \cdot exp(-\frac{H_{kinetic}}{M \cdot T})]^M| \sigma_i\rangle$$
