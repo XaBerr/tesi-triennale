@@ -24,7 +24,7 @@ Ad ogni iterazione del ciclo viene generata una soluzione \textit{vicina} a quel
 Un esempio di criterio di vicinanza può essere espresso attraverso il peso di Hamming: supponiamo di avere una sequenza di 8 bit $00001111$ con peso di Hamming 4, se noi scegliamo 2 come peso di Hamming massimo di vicinanza, allora una configurazione vicina può essere $00111111$.
 
 Lo step successivo è l'applicazione dal \idx{criterio di Metropolis}, che rappresenta il cuore dell'algoritmo: in questo passo viene scelto se tenere la configurazione \textit{attuale} o la configurazione \textit{vicina}. Se la configurazione \textit{vicina} è migliore di quella \textit{attuale} viene certamente scelta quella \textit{vicina}, contrariamente se quella \textit{attuale} è meglio di quella \textit{vicina} si sceglierà di tenere quella più svantaggiosa delle due (\textit{vicina}) in maniera semi-casuale.
-La semi-casualità viene data dalla generazione di un numero casuale $k \in [0,1]$ e dal confrontato con la \idx{distribizione di Boltzman} di parametri: $t = t_{max} - t_{delta} * n$ e $\Delta E = |E_{vicina}| - |E_{attuale}|$.
+La semi-casualità viene data dalla generazione di un numero casuale $k \in [0,1]$ e dal confrontato con la \idx{distribuzione di Boltzman} di parametri: $t = t_{max} - t_{delta} * n$ e $\Delta E = |E_{vicina}| - |E_{attuale}|$.
 $$B(\Delta E, t) = e^{- \frac{\Delta E}{k_B * t}}$$
 Questo significa che, in corrispondenza di temperature alte il sistema avrà la possibilità di muoversi liberamente di configurazione in configurazione, mentre all’abbassarsi della temperatura la sua probabilità di accettare soluzioni peggiori diminuirà.
 
