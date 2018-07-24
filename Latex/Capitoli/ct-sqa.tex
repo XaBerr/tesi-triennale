@@ -1,0 +1,11 @@
+Si prende il modello TIM n-dimensionale e lo si trasforma in un modello IM (n+1)-dimensionale attraverso l'approssimazione Suzuki-Trotter con condizioni al contorno periodiche. Otteniamo la solita funzione classica di energia:
+$$S_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{ij}' S_i(\tau) S_i(\tau+1)$$
+e la utilizziamo per esprimere l'energia libera del sistema:
+$$F = - T \cdot \lim_{\Delta \tau \to 0} \ln(Tr(e^{-S_{class}}))$$
+dove la forza di intrazione tra gli spin dei tagli temporali consecutivi è $K_{i}' = - \frac{1}{2} ln( tanh( \Delta \tau \Gamma_i) )$ mentre la forza di interazione degli spin sullo stesso taglio temporale è $K_{ij} = \Delta \tau J_{ij}$. Il numero dei tagli temporali $L_{\tau}$ è legato a $\Delta \tau = \frac{1}{T \cdot L_{\tau}}$ in modo che $\Delta \tau \to 0$ implica $L_{\tau} \to \infty$.
+
+Per ottenere un algoritmo continuo ci interessa quindi avere $\Delta \tau \to 0$ ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau}$ limitato considerano gli stessi spin in tagli temporali adiacenti aventi direzione concorde come dei segmenti di lunghezza $t = N \Delta \tau$ i quali estremi prendono nome di \textit{tagli}.
+
+Vengono considerati segmenti anche nelle direzioni spaziali.
+
+% La simulazione viene eseguita utilizzadono lo schema di aggiormanto di un claster Swendsen-Wang ovvero attraverso a delle modifiche casuali e non locali di spin.
