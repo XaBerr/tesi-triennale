@@ -4,8 +4,10 @@ e la utilizziamo per esprimere l'energia libera del sistema:
 $$F = - T \cdot \lim_{\Delta \tau \to 0} \ln(Tr(e^{-S_{class}}))$$
 dove la forza di intrazione tra gli spin dei tagli temporali consecutivi è $K_{i}' = - \frac{1}{2} ln( tanh( \Delta \tau \Gamma_i) )$ mentre la forza di interazione degli spin sullo stesso taglio temporale è $K_{ij} = \Delta \tau J_{ij}$. Il numero dei tagli temporali $L_{\tau}$ è legato a $\Delta \tau = \frac{1}{T \cdot L_{\tau}}$ in modo che $\Delta \tau \to 0$ implica $L_{\tau} \to \infty$.
 
-Per ottenere un algoritmo continuo ci interessa quindi avere $\Delta \tau \to 0$ ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau}$ limitato considerano gli stessi spin in tagli temporali adiacenti aventi direzione concorde come dei segmenti di lunghezza $t = N \Delta \tau$ i quali estremi prendono nome di \textit{tagli}.
-
-Vengono considerati segmenti anche nelle direzioni spaziali.
-
-% La simulazione viene eseguita utilizzadono lo schema di aggiormanto di un claster Swendsen-Wang ovvero attraverso a delle modifiche casuali e non locali di spin.
+Per ottenere un algoritmo continuo ci interessa quindi avere $\Delta \tau \to 0$ ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau}$ limitato considerando spin paralleli e adiacenti in intervalli temporali differenti, come dei segmenti temporali limitati agli estremi da dei \textit{tagli} che li dividono dagli altri segmenti aventi lo spin nell'altro verso.
+È possibile determinare la probabilità di due spin adiacenti di avere lo stesso verso:
+la probabilità di due spin spazio-adiacenti di avere lo stesso verso è
+$$p_{ij} = 1 - e^{-2K_{ij}} = 2\Delta \tau J_{ij} + O(\Delta \tau^2)$$
+mentre la probabilità di due spin tempo-adiacenti di avere lo stesso verso è
+$$p_i' = 1 - e^{-2K_{i}'} = 1 - \Delta \Gamma_{i} + O(\Delta \tau^2)$$
+Queste probabilità vengono utilizzate attraverso l'algoritmo Monte Carlo per introdurre altri tagli attraverso lo schema di aggiornamento non locale di claster Swendsen-Wang.
