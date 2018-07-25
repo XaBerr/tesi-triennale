@@ -1,3 +1,4 @@
+\section{CT-SQA}
 Si prende il modello TIM n-dimensionale e lo si trasforma in un modello IM (n+1)-dimensionale attraverso l'approssimazione Suzuki-Trotter con condizioni al contorno periodiche. Otteniamo la solita funzione classica di energia:
 $$S_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{ij}' S_i(\tau) S_i(\tau+1)$$
 e la utilizziamo per esprimere l'energia libera del sistema:
@@ -5,9 +6,18 @@ $$F = - T \cdot \lim_{\Delta \tau \to 0} \ln(Tr(e^{-S_{class}}))$$
 dove la forza di intrazione tra gli spin dei tagli temporali consecutivi è $K_{i}' = - \frac{1}{2} ln( tanh( \Delta \tau \Gamma_i) )$ mentre la forza di interazione degli spin sullo stesso taglio temporale è $K_{ij} = \Delta \tau J_{ij}$. Il numero dei tagli temporali $L_{\tau}$ è legato a $\Delta \tau = \frac{1}{T \cdot L_{\tau}}$ in modo che $\Delta \tau \to 0$ implica $L_{\tau} \to \infty$.
 
 Per ottenere un algoritmo continuo ci interessa quindi avere $\Delta \tau \to 0$ ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau}$ limitato considerando spin paralleli e adiacenti in intervalli temporali differenti, come dei segmenti temporali limitati agli estremi da dei \textit{tagli} che li dividono dagli altri segmenti aventi lo spin nell'altro verso.
-È possibile determinare la probabilità di due spin adiacenti di avere lo stesso verso:
+È possibile determinare la probabilità di due spin adiacenti di avere lo stesso verso a seconda del tipo di adiacenza:
 la probabilità di due spin spazio-adiacenti di avere lo stesso verso è
 $$p_{ij} = 1 - e^{-2K_{ij}} = 2\Delta \tau J_{ij} + O(\Delta \tau^2)$$
 mentre la probabilità di due spin tempo-adiacenti di avere lo stesso verso è
 $$p_i' = 1 - e^{-2K_{i}'} = 1 - \Delta \Gamma_{i} + O(\Delta \tau^2)$$
 Queste probabilità vengono utilizzate attraverso l'algoritmo Monte Carlo per introdurre altri tagli attraverso lo schema di aggiornamento non locale di claster Swendsen-Wang.
+Da qui si può esprimere la probabilità di un certo spin $i$ di collegarsi al suo tempo-adiacente in un segmento di lunghezza $t < \beta$:
+$$\hat{p_i} = \lim_{\Delta \tau \to 0} p_i'^{\frac{t}{\Delta \tau}} = \lim_{\Delta \tau \to 0} (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau} = e^{- \Gamma_i t}$$
+che servirà all'algoritmo per introdurre nuovi tagli con probabilità
+$$p_{cut}(i) = 1 - \hat{p_i}$$
+con probabilità che diminuisce col diminuire della lunghezza.
+Con lo stesso ragionamento di può anche dedurre la probabilità di un certo spin $ij$ di non colleare due segmenti $S_i\{[t_1, t_2]\}$ e $S_j\{[t_3, t_4]\}$:
+$$\hat{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} = \lim_{\Delta \tau \to 0} (1 - 2\Delta \tau J_{ij})^\frac{t}{\Delta \tau} = e^{-2 t J_{ij}}$$
+con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà all'algoritmo per introdurre nuovi collegamenti con probabilità
+$$p_{join}(i,j) = 1 - \hat{p_{i,j}}$$
