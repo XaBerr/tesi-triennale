@@ -21,3 +21,12 @@ Con lo stesso ragionamento di può anche dedurre la probabilità di un certo spi
 $$\hat{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} = \lim_{\Delta \tau \to 0} (1 - 2\Delta \tau J_{ij})^\frac{t}{\Delta \tau} = e^{-2 t J_{ij}}$$
 con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà all'algoritmo per introdurre nuovi collegamenti con probabilità
 $$p_{join}(i,j) = 1 - \hat{p_{i,j}}$$
+
+% algoritmo
+% inizializza tutto il TIM in un verso
+% vengono generati M tagli
+% vengono creati i join
+% viene generato un assegnamento casuale
+% viene calcolata l'energia
+% vengono rimossi i tagli in eccesso e rimossi i join
+% si ripete per N volte
