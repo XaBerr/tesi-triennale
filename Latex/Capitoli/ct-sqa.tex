@@ -1,4 +1,6 @@
 \section{CT-SQA}
+Il continuos time simulate quantum annealing è spesso chiamato Swendsen-Wang è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a dei raggruppamenti di spin in cluset.
+
 Ancora una volta per applicare un algoritmo quantistico in uno tradizionale bisogna approssimare il modello TIM n-dimensionale in un modello IM (n+1)-dimensionale attraverso l'approssimazione Suzuki-Trotter con condizioni al contorno periodiche; ottenendo la solita funzione classica di energia:
 $$S_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{ij}' S_i(\tau) S_i(\tau+1)$$
 che questa volta viene utilizzata per esprimere l'energia libera del sistema:
@@ -15,7 +17,7 @@ la probabilità di due spin spazio-adiacenti di avere lo stesso verso è
 $$p_{ij} = 1 - e^{-2K_{ij}} = 2\Delta \tau J_{ij} + O(\Delta \tau^2)$$
 mentre la probabilità di due spin tempo-adiacenti di avere lo stesso verso è
 $$p_i' = 1 - e^{-2K_{i}'} = 1 - \Delta \Gamma_{i} + O(\Delta \tau^2)$$
-Queste probabilità vengono utilizzate attraverso l'algoritmo Monte Carlo per introdurre altri cut attraverso lo schema di aggiornamento non locale di claster Swendsen-Wang.
+Queste probabilità vengono utilizzate attraverso l'algoritmo Monte Carlo per introdurre altri cut.
 Da qui si può esprimere la probabilità di un certo spin $i$ di collegarsi al suo tempo-adiacente in un segmento di lunghezza $t < \beta$:
 $$\hat{p_i} = \lim_{\Delta \tau \to 0} p_i'^{\frac{t}{\Delta \tau}} = \lim_{\Delta \tau \to 0} (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau} = e^{- \Gamma_i t}$$
 che servirà all'algoritmo per introdurre nuovi cut con probabilità
