@@ -76,7 +76,7 @@ Durante ogni iterazione vengono eseguite sia una mossa globale che una locale co
 L'algoritmo si conclude selezionando il modello IM con energia minore all'interno del TIM.
 
 \lvliii{Algoritmo CT-SQA}
-\cite{NCD}L'algoritmo \textit{continuos time simulate quantum annealing} (CT-SQA) è spesso conosciuto con il nome di \textit{Swendsen-Wang}, è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche non locali di raggruppamenti in cluset dei segmenti continui della dinamica di evoluzione degli spin nel tempo.
+\cite{CTSQA,NCD}L'algoritmo \textit{continuos time simulate quantum annealing} (CT-SQA) è spesso conosciuto con il nome di \textit{Swendsen-Wang}, è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche non locali di raggruppamenti in cluset dei segmenti continui della dinamica di evoluzione degli spin nel tempo.
 
 Ancora una volta per applicare un algoritmo quantistico in uno tradizionale bisogna approssimare il modello TIM n-dimensionale in un modello IM (n+1)-dimensionale attraverso l'approssimazione Suzuki-Trotter con condizioni al contorno periodiche; ottenendo la solita funzione classica di energia:
 $$S_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{ij}' S_i(\tau) S_i(\tau+1)$$
