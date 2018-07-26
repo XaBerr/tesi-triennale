@@ -62,7 +62,9 @@ con  $\sigma_i = \pm 1$ i valori di spin classici, $M$ è la dimensione aggiunti
 $$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
 $H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 
-\lvliii{Algoritmo}
+\lvliii{Algoritmo DT-SQA}
+L'algoritmo \textit{discrete time simulate quantum annealing} (DT-SQA) è spesso conosciuto con il nome di \textit{single spin flip Monte Carlo}  è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali della discrettizzazione della dinamica di evoluzione degli spin nel tempo.
+
 \cite{PIMC}Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssimazione nella dimensione temporale.
 Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
 Il valore $K(t) = -ln(tanh(\frac{\Gamma}{M \cdot T}))$ viene determinato scegliendo una $\Gamma_{max}$ iniziale. Un buon modo per sceglierla è fare delle simulazioni brevi preventive per testare alcuni valori $\Gamma_{max}$ scelti arbitrariamente. Il valore deve essere non troppo alto altrimenti non ci sarà l'accoppiamento nella dimensione temporale e neppure troppo basso se no l'accoppiamentro sarà troppo alto e l'algoritmo avrà le stesse prestazioni di quello classico.
@@ -72,3 +74,35 @@ Vengono definite due tipi di mosse: quella locale dove si inverte uno spin e que
 Durante ogni iterazione vengono eseguite sia una mossa globale che una locale con criterio di accettazione uguale a quello del SA (criterio di Metropolis) considerando l'energia del TIM al posto del IM.
 
 L'algoritmo si conclude selezionando il modello IM con energia minore all'interno del TIM.
+
+\lvliii{Algoritmo CT-SQA}
+L'algoritmo \textit{continuos time simulate quantum annealing} (CT-SQA) è spesso conosciuto con il nome di \textit{Swendsen-Wang}, è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche non locali di raggruppamenti in cluset dei segmenti continui della dinamica di evoluzione degli spin nel tempo.
+
+Ancora una volta per applicare un algoritmo quantistico in uno tradizionale bisogna approssimare il modello TIM n-dimensionale in un modello IM (n+1)-dimensionale attraverso l'approssimazione Suzuki-Trotter con condizioni al contorno periodiche; ottenendo la solita funzione classica di energia:
+$$S_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{ij}' S_i(\tau) S_i(\tau+1)$$
+che questa volta viene utilizzata per esprimere l'energia libera del sistema:
+$$F = - T \cdot \lim_{\Delta \tau \to 0} \ln(Tr(e^{-S_{class}}))$$
+dove la forza di intrazione tra gli spin di fette temporali consecutivi è
+$$K_{i}' = - \frac{1}{2} ln( tanh( \Delta \tau \Gamma_i) )$$
+mentre la forza di interazione degli spin sulla stessa fetta temporale è
+$$K_{ij} = \Delta \tau J_{ij}$$
+Il numero di fette temporali $L_{\tau}$ è legato a $\Delta \tau = \frac{1}{T \cdot L_{\tau}}$ in modo che $\Delta \tau \to 0$ implica $L_{\tau} \to \infty$.
+Per ottenere un algoritmo continuo ci interessa quindi avere un numero infinito di fette che equivale a dire $\Delta \tau \to 0$, ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau} \coloneqq M$ limitato considerando spin paralleli e adiacenti in intervalli temporali differenti, come \idx{segmenti} temporali limitati agli estremi dai \idx{cut} che li dividono da altri segmenti aventi lo spin nell'altro verso.
+
+Prima di vedere l'algoritmo introduciamo le probabilità neccessarie al suo funzionamento iniziando dalle probabilità di due spin adiacenti di avere lo stesso verso a seconda se abbiano un legame temporale o spaziale:
+la probabilità di due spin spazio-adiacenti di avere lo stesso verso è
+$$p_{ij} = 1 - e^{-2K_{ij}} = 2\Delta \tau J_{ij} + O(\Delta \tau^2)$$
+mentre la probabilità di due spin tempo-adiacenti di avere lo stesso verso è
+$$p_i' = 1 - e^{-2K_{i}'} = 1 - \Delta \Gamma_{i} + O(\Delta \tau^2)$$
+Queste probabilità vengono utilizzate attraverso l'algoritmo Monte Carlo per introdurre altri cut.
+Da qui si può esprimere la probabilità di un certo spin $i$ di collegarsi al suo tempo-adiacente in un segmento di lunghezza $t < \beta$:
+$$\hat{p_i} = \lim_{\Delta \tau \to 0} p_i'^{\frac{t}{\Delta \tau}} = \lim_{\Delta \tau \to 0} (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau} = e^{- \Gamma_i t}$$
+che servirà all'algoritmo per introdurre nuovi cut con probabilità
+$$p_{cut}(i) = 1 - \hat{p_i}$$
+con probabilità che diminuisce col diminuire della lunghezza.
+Con lo stesso ragionamento di può anche dedurre la probabilità di un certo spin $ij$ di non collegare due segmenti $S_i\{[t_1, t_2]\}$ e $S_j\{[t_3, t_4]\}$:
+$$\hat{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} = \lim_{\Delta \tau \to 0} (1 - 2\Delta \tau J_{ij})^\frac{t}{\Delta \tau} = e^{-2 t J_{ij}}$$
+con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà all'algoritmo per collegare due segmenti creando un \idx{cluster} con probabilità
+$$p_{join}(i,j) = 1 - \hat{p_{i,j}}$$
+
+L'algoritmo inizia creando come nel DT-SQA un modello TIM a partire da un modello IM inizializzato in maniera casuale. Per ogni spin si esegue un tentativo di taglio con probabilità $p_{cut}(i)$. Successivamente per ogni spin si esegue un tentativo di unione a cluster con probabilità $p_{join}(i,j)$. Il valore di spin di ogni cluster verrà invertito con probabilità $p = 0.5$, successivamente verrà calcolata l'energia del sistema.
