@@ -28,7 +28,7 @@ $$\hat{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} = \
 con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà all'algoritmo per collegare due segmenti creando un \textbf{cluster} con probabilità
 $$p_{join}(i,j) = 1 - \hat{p_{i,j}}$$
 
-L'algoritmo inizia creando come nel DT-SQA un modello TIM a partire da un modello IM inizializzato in maniera casuale. Si eseguiranno $C$ tentativi di taglio con probabilità $p_{cut}(i)$ in luoghi casuali su tutto il MIT. Successivamente si proverà $R$ tentativi con probabilità $p_{join}(i,j)$ di costruire cluster tra i vari segmenti. Per ogni cluster verrà associato in maniera casuale un valore 0 o 1 e verrà quindi calcolata l'energia del sistema.
+L'algoritmo inizia creando come nel DT-SQA un modello TIM a partire da un modello IM inizializzato in maniera casuale. Per ogni spin si esegue un tentativo di taglio con probabilità $p_{cut}(i)$. Successivamente per ogni spin si esegue un tentativo di unione a cluster con probabilità $p_{join}(i,j)$. Il valore di spin di ogni cluster verrà invertito con probabilità $p = 0.5$, successivamente verrà calcolata l'energia del sistema.
 
 % algoritmo
 % inizializza tutto il TIM in un verso
