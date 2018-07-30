@@ -63,7 +63,7 @@ $$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
 $H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 
 \lvliii{Algoritmo DT-SQA}
-L'algoritmo \textit{discrete time simulated quantum annealing} (DT-SQA)\cite{QVC} chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{path integral Monte Carlo}\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali della discrettizzazione della dinamica di evoluzione degli spin nel tempo.
+L'algoritmo \textit{discrete time simulated quantum annealing} (DT-SQA)\cite{QVC} chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (PIMC)\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali della discrettizzazione della dinamica di evoluzione degli spin nel tempo.
 
 Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssimazione nella dimensione temporale.
 Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
