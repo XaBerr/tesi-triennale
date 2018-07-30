@@ -106,9 +106,10 @@ con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà 
 $$p_{join}(i,j) = 1 - \hat{p_{i,j}}$$
 
 L'algoritmo inizia creando come nel DT-SQA un modello TIM a partire da un modello IM inizializzato in maniera casuale.
-Per ogni spin vengono generati dei tagli tra le sue repliche temporali dove la posizione di taglio è ottenuta attraverso il processo di Poisson con tempo di decadimento $\frac{1}{\Gamma_i}$:
-$$P(\tau) = \frac{(\frac{1}{\Gamma_i})^\tau}{\tau!} \cdot e^{-\frac{1}{\Gamma_i}}$$
-e con probabilità  di taglio $p_{cut}(i)$.
+% Per ogni spin vengono generati dei tagli tra le sue repliche temporali dove la posizione di taglio è ottenuta attraverso il processo di Poisson con tempo di decadimento $\frac{1}{\Gamma_i}$:
+% $$P(\tau) = \frac{(\frac{1}{\Gamma_i})^\tau}{\tau!} \cdot e^{-\frac{1}{\Gamma_i}}$$
+% e con probabilità  di taglio $p_{cut}(i)$.
+Per ogni spin vengono generati dei tagli tra le sue repliche temporali con probabilità  di taglio $p_{cut}(i)$.
 Successivamente per ogni spin e per ogni sua evoluzione temporale si esegue un tentativo di unione a cluster con probabilità $p_{join}(i,j)$.
 A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno quindi memorizzate le energie delle fette temporali, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join.
 Partendo dalla generazione di nuovi tagli verrà ripetuto il processo il numero desiderato di volte.
