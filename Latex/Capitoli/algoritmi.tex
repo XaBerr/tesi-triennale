@@ -11,7 +11,7 @@
 \cite{QA}Il modello di Ising (IM) a due dimensioni è possibile immaginarlo come una griglia $N \times N$ composta da \textit{nodi}, che rappresentano gli atomi, e \textit{archi}, che rappresentano le interazioni tra essi. Ogni nodo può assumere come valori $1$ in caso l'atomo sia spin-up o $-1$ in caso sia spin-down. Esistono due varianti del modello IM quella di \idx{Sherrington-Kirkpatrick} (SK) dove l'interazione di ogni particella ha raggio infinito e quello di  \idx{Edwards-Anderson} (EA) dove l'interazione ha raggio finito. In questa discussione faremo sempre riferimento al modello EA con raggio unitario, ovvero le particelle interaggiranno soltanto con quelle adiacenti. A questo modello sarà associata una funzione Hamiltoniana:
 $$ H(\vec{a}, \vec{b}, \vec{q}) = - \sum_{i \in A } a_i q_i - \frac{1}{2} \sum_{i \in A} \sum_{j \in B_i} b_{ij} q_i q_j $$
 in cui $A$ è l'insieme dei nodi e $B_i$ è l'insieme dei vicini del nodo $i$. In particolare $a_i$ è il valore di energia associata al nodo $i$, $q_i$ è il valore dello spin del nodo $i$ e $b_{ij}$ è il valore di energia associato alla coppia di vicinanza dei nodi $i$ e $j$. È importante tenere conto che l'hamiltoniana descritta non fa riferimento al numero di dimensioni, infatti questo modello può essere astratto a $n$ dimensioni.
-\lvliii{Algoritmo}
+\lvliii{Algoritmo simulated annealing}
 \cite{QA, MC, ST}Il primo step del processo del simulated annealing consiste nel determinare uno stato di
 partenza. Solitamente questo avviene in maniera casuale e, perciò, la condizione iniziale può anche essere \textit{non ammissibile}. L’idea alla base dell’algoritmo è quella di arrivare a valutare un sottoinsieme delle soluzioni ammissibili partendo dallo stato iniziale scelto e applicando una successione di piccole perturbazioni.
 
@@ -62,8 +62,8 @@ con  $\sigma_i = \pm 1$ i valori di spin classici, $M$ è la dimensione aggiunti
 $$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
 $H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 
-\lvliii{Algoritmo DT-SQA}
-L'algoritmo \textit{discrete time simulated quantum annealing} (DT-SQA)\cite{QVC} chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (PIMC)\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali nella discrettizzazione della dinamica di evoluzione degli spin nel tempo.
+\lvliii{Algoritmo Santoro-Tosatti-Martonak}
+L'algoritmo chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (PIMC)\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali nella discrettizzazione della dinamica di evoluzione degli spin nel tempo.
 
 Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssimazione nella dimensione temporale.
 Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
@@ -114,3 +114,6 @@ Successivamente per ogni spin e per ogni sua evoluzione temporale si esegue un t
 A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno quindi memorizzate le energie delle fette temporali, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join.
 Partendo dalla generazione di nuovi tagli verrà ripetuto il processo il numero desiderato di volte.
 Alla fine del processo verrà selezionata la configurazione migliore.
+
+\lvliii{Algoritmo DT-SQA}
+Come il CT-SQA ma con le probabilità non calcolate per $\Delta \tau \to 0$.
