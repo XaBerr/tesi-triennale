@@ -63,7 +63,7 @@ $$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
 $H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 
 \lvliii{Algoritmo Santoro-Tosatti-Martonak}
-L'algoritmo chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (PIMC)\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali nella discrettizzazione della dinamica di evoluzione degli spin nel tempo.
+L'algoritmo chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (\idx{PIMC})\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali nella discrettizzazione della dinamica di evoluzione degli spin nel tempo.
 
 Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssimazione nella dimensione temporale.
 Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
@@ -86,6 +86,9 @@ dove la forza di intrazione tra gli spin di fette temporali consecutivi è
 $$K_{i}' = - \frac{1}{2} ln( tanh( \Delta \tau \Gamma_i) )$$
 mentre la forza di interazione degli spin sulla stessa fetta temporale è
 $$K_{ij} = \Delta \tau J_{ij}$$
+da cui possiamo ricavarci:
+$$S_{ct} = - \frac{1}{M} \sum_{i,j} K_{ij} S_i(\tau) S_j(\tau) + \frac{1}{2 \beta} \log{(\tanh{(\Gamma \frac{\beta}{M})})} \sum_{\tau, i} S_i(\tau) S_i(\tau+1)$$
+
 Il numero di fette temporali $L_{\tau}$ è legato a $\Delta \tau = \frac{1}{T \cdot L_{\tau}}$ in modo che $\Delta \tau \to 0$ implica $L_{\tau} \to \infty$.
 Per ottenere un algoritmo continuo ci interessa quindi avere un numero infinito di fette che equivale a dire $\Delta \tau \to 0$, ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau} \coloneqq M$ limitato considerando spin paralleli e adiacenti in intervalli temporali differenti, come \idx{segmenti} temporali limitati agli estremi dai \idx{cut} che li dividono da altri segmenti aventi lo spin nell'altro verso.
 
