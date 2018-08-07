@@ -69,9 +69,9 @@ Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssima
 Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
 Il valore $K(t) = -ln(tanh(\frac{\Gamma}{M \cdot T}))$ viene determinato scegliendo una $\Gamma_{max}$ iniziale. Un buon modo per sceglierla è fare delle simulazioni brevi preventive per testare alcuni valori $\Gamma_{max}$ scelti arbitrariamente. Il valore deve essere non troppo alto altrimenti non ci sarà l'accoppiamento nella dimensione temporale e neppure troppo basso se no l'accoppiamentro sarà troppo alto e l'algoritmo avrà le stesse prestazioni di quello classico.
 
-L'algoritmo prevede un loop di $n$ iterazioni che simula il collassamento da superposition ad osservabile diminuendo l'inverso della correlazione da $\Gamma_{max}$ (particelle scorrelate) a $\Gamma_{min}$ (particelle correlate) con uno scalino di $\Gamma_{delta}$.
+L'algoritmo prevede un loop di $n$ iterazioni denominate \textit{Monte Carlo Step} (\idx{MCS}) che simulano il collassamento da superposition ad osservabile diminuendo l'inverso della correlazione da $\Gamma_{max}$ (particelle scorrelate) a $\Gamma_{min}$ (particelle correlate) con uno scalino di $\Gamma_{delta}$.
 Vengono definite due tipi di mosse: quella locale dove si inverte uno spin e quella globale dove si inverte un'intera colonna di spin nell'asse temporale.
-Durante ogni iterazione vengono eseguite sia una mossa globale che una locale con criterio di accettazione uguale a quello del SA (criterio di Metropolis) considerando l'energia del TIM al posto del IM.
+Durante ogni MCS vengono eseguite sia una mossa globale che una locale con criterio di accettazione uguale a quello del SA (criterio di Metropolis) considerando l'energia del TIM al posto del IM.
 
 L'algoritmo si conclude selezionando il modello IM con energia minore all'interno del TIM.
 
@@ -91,29 +91,24 @@ Per ottenere un algoritmo continuo ci interessa quindi avere un numero infinito 
 
 Prima di vedere l'algoritmo introduciamo le probabilità neccessarie al suo funzionamento iniziando dalle probabilità di due spin adiacenti di avere lo stesso verso a seconda se abbiano un legame temporale o spaziale:
 la probabilità di due spin spazio-adiacenti di avere lo stesso verso è
-$$p_{ij} = 1 - e^{-2K_{ij}} = 2\Delta \tau J_{ij} + O(\Delta \tau^2)$$
+$$p_{ij} = 1 - e^{-2K_{ij}} = 2\Delta \tau J_{ij} + o(\Delta \tau^2)$$
 mentre la probabilità di due spin tempo-adiacenti di avere lo stesso verso è
-$$p_i' = 1 - e^{-2K_{i}'} = 1 - \Delta \Gamma_{i} + O(\Delta \tau^2)$$
+$$p_i' = 1 - e^{-2K_{i}'} = 1 - \Delta \Gamma_{i} + o(\Delta \tau^2)$$
 Queste probabilità vengono utilizzate attraverso l'algoritmo Monte Carlo per introdurre altri cut.
 Da qui si può esprimere la probabilità di un certo spin $i$ di collegarsi al suo tempo-adiacente in un segmento di lunghezza $t < \beta$:
-$$\hat{p_i} = \lim_{\Delta \tau \to 0} p_i'^{\frac{t}{\Delta \tau}} = \lim_{\Delta \tau \to 0} (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau} = e^{- \Gamma_i t}$$
+$$\tilde{p_i} = \lim_{\Delta \tau \to 0} p_i'^{\frac{t}{\Delta \tau}} = \lim_{\Delta \tau \to 0} (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau} = e^{- \Gamma_i t}$$
 che servirà all'algoritmo per introdurre nuovi cut con probabilità
-$$p_{cut}(i) = 1 - \hat{p_i}$$
+$$p_{cut}(i) = 1 - \tilde{p_i}$$
 con probabilità che diminuisce col diminuire della lunghezza.
 Con lo stesso ragionamento di può anche dedurre la probabilità di un certo spin $ij$ di non collegare due segmenti $S_i\{[t_1, t_2]\}$ e $S_j\{[t_3, t_4]\}$:
-$$\hat{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} = \lim_{\Delta \tau \to 0} (1 - 2\Delta \tau J_{ij})^\frac{t}{\Delta \tau} = e^{-2 t J_{ij}}$$
+$$\tilde{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} = \lim_{\Delta \tau \to 0} (1 - 2\Delta \tau J_{ij})^\frac{t}{\Delta \tau} = e^{-2 t J_{ij}}$$
 con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà all'algoritmo per collegare due segmenti creando un \idx{cluster} con probabilità
-$$p_{join}(i,j) = 1 - \hat{p_{i,j}}$$
+$$p_{join}(i,j) = 1 - \tilde{p_{i,j}}$$
 
-L'algoritmo inizia creando come nel DT-SQA un modello TIM a partire da un modello IM inizializzato in maniera casuale.
-% Per ogni spin vengono generati dei tagli tra le sue repliche temporali dove la posizione di taglio è ottenuta attraverso il processo di Poisson con tempo di decadimento $\frac{1}{\Gamma_i}$:
-% $$P(\tau) = \frac{(\frac{1}{\Gamma_i})^\tau}{\tau!} \cdot e^{-\frac{1}{\Gamma_i}}$$
-% e con probabilità  di taglio $p_{cut}(i)$.
+L'algoritmo prevede gli stessi passaggi del \textit{Santoro-Tosatti-Martonak} a differenza della procedura eseguita all'interno del MCS che verrà spiegata qui sotto.
 Per ogni spin vengono generati dei tagli tra le sue repliche temporali con probabilità  di taglio $p_{cut}(i)$.
 Successivamente per ogni spin e per ogni sua evoluzione temporale si esegue un tentativo di unione a cluster con probabilità $p_{join}(i,j)$.
 A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno quindi memorizzate le energie delle fette temporali, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join.
-Partendo dalla generazione di nuovi tagli verrà ripetuto il processo il numero desiderato di volte.
-Alla fine del processo verrà selezionata la configurazione migliore.
 
 \lvliii{Algoritmo DT-SQA}
 Come il CT-SQA ma con le probabilità non calcolate per $\Delta \tau \to 0$.
