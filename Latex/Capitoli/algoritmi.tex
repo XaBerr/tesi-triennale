@@ -78,19 +78,21 @@ L'algoritmo si conclude selezionando il modello IM con energia minore all'intern
 \lvliii{Algoritmo CT-SQA}
 Il \textit{continuos time simulated quantum annealing} (CT-SQA)\cite{QVC} anche chiamato \textit{Riger-Kawashima}\cite{CTSQA} è una variante del Monte Carlo a cluster \textit{Swendsen-Wang}\cite{NCD} ed è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche non locali di raggruppamenti in cluset dei segmenti continui nella dinamica di evoluzione degli spin nel tempo.
 
-Ancora una volta per applicare un algoritmo quantistico in uno tradizionale bisogna approssimare il modello TIM n-dimensionale in un modello IM (n+1)-dimensionale attraverso l'approssimazione Suzuki-Trotter con condizioni al contorno periodiche; ottenendo la solita funzione classica di energia:
-$$S_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{i}' S_i(\tau) S_i(\tau+1)$$
-che questa volta viene utilizzata per esprimere l'energia libera del sistema:
-$$F = - T \cdot \lim_{\Delta \tau \to 0} \ln(Tr(e^{-S_{class}}))$$
-dove la forza di intrazione tra gli spin di fette temporali consecutivi è
+Ancora una volta per applicare un algoritmo quantistico in uno tradizionale bisogna approssimare il modello TIM n-dimensionale in un modello IM (n+1)-dimensionale attraverso l'approssimazione \textit{Suzuki-Trotter} con condizioni al contorno periodiche.
+Applicando l'interpretazione \textit{Riger-Kawashima} otteniamo una variazione della solita funzione hamiltoniana:
+$$H_{class} = - \sum_{\tau,\langle ij \rangle} K_{ij} S_i(\tau) S_j(\tau) - \sum_{\tau, i} K_{i}' S_i(\tau) S_i(\tau+1)$$
+con la dimensione aggiuntiva divisa in \idx{fette temporali} di intervallo $\Delta\tau = \frac{\beta}{L_{\tau}}$
+dove la forza di interazione tra gli spin adiacenti in fette consecutive è
 $$K_{i}' = - \frac{1}{2} ln( tanh( \Delta \tau \Gamma_i) )$$
-mentre la forza di interazione degli spin sulla stessa fetta temporale è
+mentre la forza di interazione degli spin sulla stessa fetta è
 $$K_{ij} = \Delta \tau J_{ij}$$
-da cui possiamo ricavarci:
-$$S_{ct} = - \frac{1}{M} \sum_{i,j} K_{ij} S_i(\tau) S_j(\tau) + \frac{1}{2 \beta} \log{(\tanh{(\Gamma \frac{\beta}{M})})} \sum_{\tau, i} S_i(\tau) S_i(\tau+1)$$
 
 Il numero di fette temporali $L_{\tau}$ è legato a $\Delta \tau = \frac{1}{T \cdot L_{\tau}}$ in modo che $\Delta \tau \to 0$ implica $L_{\tau} \to \infty$.
 Per ottenere un algoritmo continuo ci interessa quindi avere un numero infinito di fette che equivale a dire $\Delta \tau \to 0$, ma essendo computazionalmente improponibile viene scelto di tenere $L_{\tau} \coloneqq M$ limitato considerando spin paralleli e adiacenti in intervalli temporali differenti, come \idx{segmenti} temporali limitati agli estremi dai \idx{cut} che li dividono da altri segmenti aventi lo spin nell'altro verso.
+
+A questo punto tenendo costante $\Gamma$ nella dimensione temporale possiamo quindi riscrivere la formula in questo modo:
+$$H_{ct} = - \frac{1}{M} \sum_{i,j} J_{ij} S_i(\tau) S_j(\tau) + \frac{1}{2 \beta} \log{(\tanh{(\Gamma \frac{\beta}{M})})} \sum_{\tau, i} S_i(\tau) S_i(\tau+1)$$
+esplicitando le variabili note $M, \beta, \Gamma$, le variabili del problema $J_{i,j}$ e le soluzioni cercate $S(\tau,i,j)$.
 
 Prima di vedere l'algoritmo introduciamo le probabilità neccessarie al suo funzionamento iniziando dalle probabilità di due spin adiacenti di avere lo stesso verso a seconda se abbiano un legame temporale o spaziale:
 la probabilità di due spin spazio-adiacenti di avere lo stesso verso è
@@ -108,7 +110,7 @@ $$\tilde{p_{ij}} = \lim_{\Delta \tau \to 0} (1 - p_{ij})^\frac{t}{\Delta \tau} =
 con $t$ la lunghezza dell'intervallo $[t_1, t_2] \cap [t_3, t_4]$; che servirà all'algoritmo per collegare due segmenti creando un \idx{cluster} con probabilità
 $$p_{join}(i,j) = 1 - \tilde{p_{i,j}}$$
 
-L'algoritmo prevede gli stessi passaggi del \textit{Santoro-Tosatti-Martonak} a differenza della procedura eseguita all'interno del MCS che verrà spiegata qui sotto.
+L'algoritmo prevede gli stessi passaggi del \textit{Santoro-Tosatti-Martonak} a differenza della procedura eseguita all'interno del MCS che seguirà l'interpretazione \textit{Swendsen-Wang} descritta qui sotto.
 Per ogni spin vengono generati dei tagli tra le sue repliche temporali con probabilità  di taglio $p_{cut}(i)$.
 Successivamente per ogni spin e per ogni sua evoluzione temporale si esegue un tentativo di unione a cluster con probabilità $p_{join}(i,j)$.
 A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno quindi memorizzate le energie delle fette temporali, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join.
