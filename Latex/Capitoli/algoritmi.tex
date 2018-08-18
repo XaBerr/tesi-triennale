@@ -112,13 +112,14 @@ $$p_{join}(i,j) = 1 - \tilde{p_{i,j}}$$
 L'algoritmo a differenza del \textit{Santoro-Tosatti-Martonak} e del \textit{simulated annealing} non prevede una funzione di accettazione della configurazione ma simula soltanto l'evoluzione dell'onda attraverso una successione di MCS che con l'abbassamento lineare $\Gamma: \Gamma_0 \to 0$, seguno l'interpretazione \textit{Swendsen-Wang} descritta qui sotto.\\
 Per ogni spin vengono generati dei tagli tra le sue repliche temporali con probabilità  di taglio $p_{cut}(i)$.
 Successivamente per ogni spin e per ogni sua evoluzione temporale si esegue un tentativo di unione a cluster con probabilità $p_{join}(i,j)$.
-A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno quindi memorizzate le energie delle fette temporali, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join.
+A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join. Alla fine si calcolerà la media delle energie dei vari modelli IM.
 
 \lvliii{Algoritmo DT-SQA}
-La differenza principale tra il CT-SQA e il DT-SQA è la rappresentazione \textit{path integral} rappresentata in questo caso dal utilizzo dello step discreto $\Delta\tau$. La procedura è la stessa descritta per il CT-SQA ma differisce per i valori utilizzati nelle probabilità, ovvero vanno utilizzati i valori iniziali descritti nel paragrafo del CT-SQA e non quelli utilizzati con il limite $\Delta\tau \to 0$ che sono rispettivamente:
+La differenza principale tra il CT-SQA e il DT-SQA è la rappresentazione \textit{path integral} rappresentata in questo caso dal utilizzo dello step discreto $\Delta\tau$. La procedura è la stessa descritta per il CT-SQA ma differisce per il calcolo dell'energia finale e per i valori utilizzati nelle probabilità, ovvero vanno utilizzati i valori iniziali descritti nel paragrafo del CT-SQA e non quelli utilizzati con il limite $\Delta\tau \to 0$ che sono rispettivamente:
 per la probabilità di cut:
 $$\bar{p_i} = p_i'^{\frac{t}{\Delta \tau}} = (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau}$$
 $$p_{cut}(i) = 1 - \bar{p_i}$$
 per la probabilità di join:
 $$\bar{p_{ij}} = (1 - p_{ij})^\frac{t}{\Delta \tau} = (1 - 2\Delta \tau J_{ij})^\frac{t}{\Delta \tau}$$
 $$p_{join}(i,j) = 1 - \bar{p_{i,j}}$$
+L'energia finale sarà calcolata scegliendo la minore tra le varie repliche del modello IM.
