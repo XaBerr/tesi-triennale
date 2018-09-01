@@ -4,18 +4,18 @@ In questo capitolo introdurremo alcuni algoritmi classici con cui il D-Wave può
 
 \lvlii{Simulated annealing}
 \lvliii{Introduzione}
-\cite{QA,ST}Il Simulated Annealing (SA) nasce come metodo di simulazione per il classica annealing ed è un’euristica di ricerca locale che trova le sue maggiori applicazioni nell’ambito dei problemi di ottimizzazione, sia combinatoriale che discreta. Esso, in quanto euristica, viene utilizzato come algoritmo per la risoluzione di problemi NP-hard, classe di complessità alla quale appartengono problemi troppo onerosi dal punto di vista temporale per gli algoritmi classici.
+\cite{QA,ST,CODE}Il Simulated Annealing (SA) nasce come metodo di simulazione per il classica annealing ed è un’euristica di ricerca locale che trova le sue maggiori applicazioni nell’ambito dei problemi di ottimizzazione, sia combinatoriale che discreta. Esso, in quanto euristica, viene utilizzato come algoritmo per la risoluzione di problemi NP-hard, classe di complessità alla quale appartengono problemi troppo onerosi dal punto di vista temporale per gli algoritmi classici.
 \lvliii{Modello di Ising}
 \begin{wrapfloat}{figure}{I}{0pt}
 \includegraphics[width=0.4\textwidth]{Immagini/ising.jpg}
 \caption{Modello di Ising (EA).}
 \label{figura:ising}
 \end{wrapfloat}
-\cite{QA}Il modello di Ising (IM) a due dimensioni è possibile immaginarlo come una griglia $N \times N$ composta da \textit{nodi} che rappresentano gli atomi, e \textit{archi}, che rappresentano le interazioni tra essi. Ogni nodo può assumere come valori $1$ in caso l'atomo sia spin-up o $-1$ in caso sia spin-down. Esistono due varianti del modello IM quella di \idx{Sherrington-Kirkpatrick} (SK) dove l'interazione di ogni particella ha raggio infinito e quello di  \idx{Edwards-Anderson} (EA) dove l'interazione ha raggio finito. In questa discussione faremo sempre riferimento al modello EA con raggio unitario, ovvero le particelle interaggiranno soltanto con quelle adiacenti. A questo modello sarà associata una funzione Hamiltoniana:
+\cite{QA, CODE}Il modello di Ising (IM) a due dimensioni è possibile immaginarlo come una griglia $N \times N$ composta da \textit{nodi} che rappresentano gli atomi, e \textit{archi}, che rappresentano le interazioni tra essi. Ogni nodo può assumere come valori $1$ in caso l'atomo sia spin-up o $-1$ in caso sia spin-down. Esistono due varianti del modello IM quella di \idx{Sherrington-Kirkpatrick} (SK) dove l'interazione di ogni particella ha raggio infinito e quello di  \idx{Edwards-Anderson} (EA) dove l'interazione ha raggio finito. In questa discussione faremo sempre riferimento al modello EA con raggio unitario, ovvero le particelle interaggiranno soltanto con quelle adiacenti. A questo modello sarà associata una funzione Hamiltoniana:
 $$ H(\vec{a}, \vec{b}, \vec{q}) = - \sum_{i \in A } a_i q_i - \frac{1}{2} \sum_{i \in A} \sum_{j \in B_i} b_{ij} q_i q_j $$
 in cui $A$ è l'insieme dei nodi e $B_i$ è l'insieme dei vicini del nodo $i$. In particolare $a_i$ è il valore di energia associata al nodo $i$, $q_i$ è il valore dello spin del nodo $i$ e $b_{ij}$ è il valore di energia associato alla coppia di vicinanza dei nodi $i$ e $j$. È importante tenere conto che l'hamiltoniana descritta non fa riferimento al numero di dimensioni, infatti questo modello può essere astratto a $n$ dimensioni.
 \lvliii{Algoritmo simulated annealing}
-\cite{QA, MC, ST}Il primo step del processo del simulated annealing consiste nel determinare uno stato di
+\cite{QA, MC, ST, CODE}Il primo step del processo del simulated annealing consiste nel determinare uno stato di
 partenza. Solitamente questo avviene in maniera casuale, perciò, la condizione iniziale può anche essere \textit{non ammissibile}. L’idea alla base dell’algoritmo è quella di arrivare a valutare un sottoinsieme delle soluzioni ammissibili partendo dallo stato iniziale scelto e applicando una successione di piccole perturbazioni.
 
 L'algoritmo prevede un loop di $n$ iterazioni che simula l'abbassamento della temperatura da $t_{max}$ (temperatura di partenza) a $t_{min}$ (temperatura di arrivo) con uno scalino di $t_{delta}$. Dati quindi i parametri iniziali $t_{max}, t_{min} \in \mathbb{R}_{\geq 0}$ e $ t_{delta} \in \mathbb{R}_{> 0}$, possiamo ricavarci il valore di $n$:
@@ -48,7 +48,7 @@ In questa versione al posto dei valori di spin troviamo le matrici di Pauli $\si
 \caption{Approssimazione Suzuki-Trotter.}
 \label{figura:suzuki}
 \end{wrapfloat}
-\cite{QA, PIMC}Il primo passo per implementare il SQA è approssimare il modello matematico quantistico attraverso un modello classico computabile da un calcolatore tradizionale. Sfruttando il formalismo Suzuki-Trotter possiamo mappare il nostro modello TIM n-dimensionale in un modello IM (n+1)-dimensionale dove la dimensione aggiuntiva rappresenta l'evoluzione temporale del sistema delle sue altre dimensioni. La procedura per ricavarci il modello IM parte dalla considerazione di dividere l'hemiltoniana $H = H_{classic} + H_{kinetic}$ nella sua parte classica di energia potenziale $H_{classic}$ e nella sua parte transversa rappresentante l'energia cinetica $H_{kinetic}$. Ora si può scrivere la \idx{funzione di partizione}
+\cite{QA, PIMC, CODE}Il primo passo per implementare il SQA è approssimare il modello matematico quantistico attraverso un modello classico computabile da un calcolatore tradizionale. Sfruttando il formalismo Suzuki-Trotter possiamo mappare il nostro modello TIM n-dimensionale in un modello IM (n+1)-dimensionale dove la dimensione aggiuntiva rappresenta l'evoluzione temporale del sistema delle sue altre dimensioni. La procedura per ricavarci il modello IM parte dalla considerazione di dividere l'hemiltoniana $H = H_{classic} + H_{kinetic}$ nella sua parte classica di energia potenziale $H_{classic}$ e nella sua parte transversa rappresentante l'energia cinetica $H_{kinetic}$. Ora si può scrivere la \idx{funzione di partizione}
 $$Z = Tr (exp(-\frac{H_{classic} + H_{kinetic}}{T}))$$ e attraverso la formula di Trotter riscriverla come:
 $$Z= \lim_{M \to +\infty} \sum_i \langle\sigma_i|[exp(-\frac{H_{classic}}{M \cdot T}) \cdot exp(-\frac{H_{kinetic}}{M \cdot T})]^M| \sigma_i\rangle$$
 Applicandola alla funzione di partizione possiamo dividere in: la parte potenziale
@@ -66,7 +66,7 @@ $$J_{orto} = - \frac{M\cdot T}{2} ln(tanh(\frac{\Gamma}{M \cdot T}))$$
 $H_{d+1}$ rappresenta l'energia associata alla funzione di partizione $Z_M$ che è assintotica a $Z$ per un sistema alla temperatura $M \cdot T$.
 
 \lvliii{Algoritmo Santoro-Tosatti-Martonak}
-L'algoritmo chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (\idx{PIMC})\cite{PIMC} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali nella discrettizzazione della dinamica di evoluzione degli spin nel tempo.
+L'algoritmo chiamto \textit{Santoro-Tosatti-Martonak} o anche come \textit{Path Integral Monte Carlo} (\idx{PIMC})\cite{PIMC, CODE} è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche locali nella discrettizzazione della dinamica di evoluzione degli spin nel tempo.
 
 Come prima cosa si sceglie un valore $M$ che rappresenta il numero di approssimazione nella dimensione temporale.
 Successivamente si inizializza IM in equilibrio ad una temperatura $T$, lo si duplica $M$ volte e lo si interconnette creando un modello TIM impostando un valore di $J_{orto} \simeq T \cdot M \cdot K(t) \ge |J|$ dove $K(t)$ è una funzione da determinare e $J$ è il valore di accoppiamento degli spin. Un modo per portare il modello IM in equilibrio è partire da una configurazione casuale e successivamente applicare un SA da $T_{iniz}$ a $T$ con $T_{iniz} > T$.
@@ -79,7 +79,7 @@ Durante ogni MCS vengono eseguite sia una mossa globale che una locale con crite
 L'algoritmo si conclude selezionando il modello IM con energia minore all'interno del TIM.
 
 \lvliii{Algoritmo CT-SQA}
-Il \textit{continuos time simulated quantum annealing} (CT-SQA)\cite{QVC} anche chiamato \textit{Rieger-Kawashima}\cite{CTSQA,QMCM} è una variante del Monte Carlo a cluster \textit{Swendsen-Wang}\cite{NCD,QMCM} ed è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche non locali di raggruppamenti in cluster dei segmenti continui nella dinamica di evoluzione degli spin nel tempo.
+Il \textit{continuos time simulated quantum annealing} (CT-SQA)\cite{QVC} anche chiamato \textit{Rieger-Kawashima}\cite{CTSQA, QMCM, CODE} è una variante del Monte Carlo a cluster \textit{Swendsen-Wang}\cite{NCD, QMCM, CODE} ed è un'algorimto che cerca di ottenere il valore minimo di energia per IM attraverso a delle modifiche non locali di raggruppamenti in cluster dei segmenti continui nella dinamica di evoluzione degli spin nel tempo.
 
 Ancora una volta per applicare un algoritmo quantistico in uno tradizionale bisogna sostituire il modello TIM n-dimensionale in un modello IM (n+1)-dimensionale attraverso l'approssimazione \textit{Suzuki-Trotter} con condizioni al contorno periodiche.
 Applicando l'interpretazione \textit{Rieger-Kawashima} otteniamo una variazione della solita funzione hamiltoniana:
@@ -118,7 +118,7 @@ Successivamente per ogni spin e per ogni sua evoluzione temporale si esegue un t
 A questo punto per ogni cluster verrà eseguita un'inversione di spin con probabilità $p_{flip} = 0.5$, verranno rimossi i tagli superflui contenuti nei segmenti continui e rimossi i join. Alla fine si calcolerà la media delle energie dei vari modelli IM.
 
 \lvliii{Algoritmo DT-SQA}
-La differenza principale tra il CT-SQA e il DT-SQA è la rappresentazione \textit{path integral} rappresentata in questo caso dal utilizzo dello step discreto $\Delta\tau$. La procedura è la stessa descritta per il CT-SQA ma differisce per il calcolo dell'energia finale e per i valori utilizzati nelle probabilità, ovvero vanno utilizzati i valori iniziali descritti nel paragrafo del CT-SQA e non quelli utilizzati con il limite $\Delta\tau \to 0$ che sono rispettivamente:
+La differenza principale tra il CT-SQA e il DT-SQA\cite{CODE} è la rappresentazione \textit{path integral} rappresentata in questo caso dal utilizzo dello step discreto $\Delta\tau$. La procedura è la stessa descritta per il CT-SQA ma differisce per il calcolo dell'energia finale e per i valori utilizzati nelle probabilità, ovvero vanno utilizzati i valori iniziali descritti nel paragrafo del CT-SQA e non quelli utilizzati con il limite $\Delta\tau \to 0$ che sono rispettivamente:
 per la probabilità di cut:
 $$\bar{p_i} = p_i'^{\frac{t}{\Delta \tau}} = (1 - \Delta \tau \Gamma_i)^\frac{t}{\Delta \tau}$$
 $$p_{cut}(i) = 1 - \bar{p_i}$$
